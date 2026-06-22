@@ -31,7 +31,7 @@ public class fDashboard extends javax.swing.JFrame {
         pContent.add(new panelJurusan(),"jurusan");
         pContent.add(new panelGuru(),"guru");
         pContent.add(new panelKelas(),"kelas");
-        pContent.add(new panelSiswa4(),"siswa");
+        pContent.add(new panelSiswa(),"siswa");
         pContent.add(new panelAbout(),"about");
     }
 
@@ -45,7 +45,7 @@ public class fDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         pSidebar = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblAlumni = new javax.swing.JLabel();
         btnDashboard = new javax.swing.JButton();
         btnJurusan = new javax.swing.JButton();
         btnGuru = new javax.swing.JButton();
@@ -62,12 +62,12 @@ public class fDashboard extends javax.swing.JFrame {
 
         pSidebar.setBackground(new java.awt.Color(51, 153, 255));
 
-        jLabel1.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/icons8-graduation-40.png"))); // NOI18N
-        jLabel1.setText("Aloomni");
-        jLabel1.setIconTextGap(10);
+        lblAlumni.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 24)); // NOI18N
+        lblAlumni.setForeground(new java.awt.Color(255, 255, 255));
+        lblAlumni.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAlumni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/icons8-graduation-40.png"))); // NOI18N
+        lblAlumni.setText("Aloomni");
+        lblAlumni.setIconTextGap(10);
 
         btnDashboard.setBackground(new java.awt.Color(51, 153, 255));
         btnDashboard.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
@@ -117,7 +117,7 @@ public class fDashboard extends javax.swing.JFrame {
         btnAbout.setBackground(new java.awt.Color(51, 153, 255));
         btnAbout.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
         btnAbout.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/icon class (2).png"))); // NOI18N
+        btnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/icon about.png"))); // NOI18N
         btnAbout.setText("About");
         btnAbout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAbout.setIconTextGap(10);
@@ -136,7 +136,7 @@ public class fDashboard extends javax.swing.JFrame {
         pSidebar.setLayout(pSidebarLayout);
         pSidebarLayout.setHorizontalGroup(
             pSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(btnJurusan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnGuru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnKelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,16 +144,16 @@ public class fDashboard extends javax.swing.JFrame {
             .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pSidebarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(lblAlumni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pSidebarLayout.setVerticalGroup(
             pSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pSidebarLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
+                .addComponent(lblAlumni)
+                .addGap(54, 54, 54)
                 .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,7 +254,7 @@ public class fDashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnKelas;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSiswa;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblAlumni;
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pSidebar;
     // End of variables declaration//GEN-END:variables

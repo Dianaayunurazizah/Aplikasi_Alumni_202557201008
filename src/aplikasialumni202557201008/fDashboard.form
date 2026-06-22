@@ -45,7 +45,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="btnDashboard" alignment="0" max="32767" attributes="0"/>
+              <Component id="btnDashboard" alignment="0" pref="200" max="32767" attributes="0"/>
               <Component id="btnJurusan" alignment="0" max="32767" attributes="0"/>
               <Component id="btnGuru" alignment="0" max="32767" attributes="0"/>
               <Component id="btnKelas" alignment="0" max="32767" attributes="0"/>
@@ -53,18 +53,18 @@
               <Component id="btnAbout" alignment="0" max="32767" attributes="0"/>
               <Component id="btnLogout" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="150" max="-2" attributes="0"/>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="lblAlumni" min="-2" pref="150" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="lblAlumni" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="btnDashboard" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="btnJurusan" min="-2" pref="38" max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblAlumni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Plus Jakarta Sans SemiBold" size="24" style="0"/>
@@ -222,7 +222,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/aplikasialumni202557201008/img/icon class (2).png"/>
+              <Image iconType="3" name="/aplikasialumni202557201008/img/icon about.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="About"/>
             <Property name="horizontalAlignment" type="int" value="2"/>

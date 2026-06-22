@@ -27,20 +27,20 @@ public class panelDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        pHeaderJurusan = new javax.swing.JPanel();
+        pJumlahJurusan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        pHeaderGuru = new javax.swing.JPanel();
+        pJumlahGuru = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        pHeaderSiswa = new javax.swing.JPanel();
+        pJumlahSiswa = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
+        pHeaderKelas = new javax.swing.JPanel();
+        pJumlahKelas = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -49,15 +49,15 @@ public class panelDashboard extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(200, 150));
-        jPanel2.setName(""); // NOI18N
-        jPanel2.setPreferredSize(new java.awt.Dimension(200, 150));
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        pHeaderJurusan.setMinimumSize(new java.awt.Dimension(200, 150));
+        pHeaderJurusan.setName(""); // NOI18N
+        pHeaderJurusan.setPreferredSize(new java.awt.Dimension(200, 150));
+        pHeaderJurusan.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMinimumSize(new java.awt.Dimension(766, 150));
-        jPanel3.setPreferredSize(new java.awt.Dimension(766, 150));
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        pJumlahJurusan.setBackground(new java.awt.Color(255, 255, 255));
+        pJumlahJurusan.setMinimumSize(new java.awt.Dimension(766, 150));
+        pJumlahJurusan.setPreferredSize(new java.awt.Dimension(766, 150));
+        pJumlahJurusan.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setBackground(new java.awt.Color(51, 153, 255));
         jLabel1.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 18)); // NOI18N
@@ -68,7 +68,7 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel1.setMinimumSize(new java.awt.Dimension(46, 35));
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(46, 35));
-        jPanel3.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        pJumlahJurusan.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -77,21 +77,21 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(124, 100));
         jLabel2.setMinimumSize(new java.awt.Dimension(124, 100));
         jLabel2.setPreferredSize(new java.awt.Dimension(124, 100));
-        jPanel3.add(jLabel2, java.awt.BorderLayout.CENTER);
+        pJumlahJurusan.add(jLabel2, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        pHeaderJurusan.add(pJumlahJurusan, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.add(jPanel2);
-        jPanel2.getAccessibleContext().setAccessibleName("");
+        jPanel1.add(pHeaderJurusan);
+        pHeaderJurusan.getAccessibleContext().setAccessibleName("");
 
-        jPanel4.setMinimumSize(new java.awt.Dimension(200, 150));
-        jPanel4.setPreferredSize(new java.awt.Dimension(200, 150));
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        pHeaderGuru.setMinimumSize(new java.awt.Dimension(200, 150));
+        pHeaderGuru.setPreferredSize(new java.awt.Dimension(200, 150));
+        pHeaderGuru.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setMinimumSize(new java.awt.Dimension(766, 150));
-        jPanel5.setPreferredSize(new java.awt.Dimension(766, 150));
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        pJumlahGuru.setBackground(new java.awt.Color(255, 255, 255));
+        pJumlahGuru.setMinimumSize(new java.awt.Dimension(766, 150));
+        pJumlahGuru.setPreferredSize(new java.awt.Dimension(766, 150));
+        pJumlahGuru.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setBackground(new java.awt.Color(51, 153, 255));
         jLabel3.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 18)); // NOI18N
@@ -102,7 +102,7 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel3.setMinimumSize(new java.awt.Dimension(46, 35));
         jLabel3.setOpaque(true);
         jLabel3.setPreferredSize(new java.awt.Dimension(46, 35));
-        jPanel5.add(jLabel3, java.awt.BorderLayout.PAGE_START);
+        pJumlahGuru.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -110,20 +110,20 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel4.setMaximumSize(new java.awt.Dimension(124, 100));
         jLabel4.setMinimumSize(new java.awt.Dimension(124, 100));
         jLabel4.setPreferredSize(new java.awt.Dimension(124, 100));
-        jPanel5.add(jLabel4, java.awt.BorderLayout.CENTER);
+        pJumlahGuru.add(jLabel4, java.awt.BorderLayout.CENTER);
 
-        jPanel4.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+        pHeaderGuru.add(pJumlahGuru, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.add(jPanel4);
+        jPanel1.add(pHeaderGuru);
 
-        jPanel6.setMinimumSize(new java.awt.Dimension(200, 150));
-        jPanel6.setPreferredSize(new java.awt.Dimension(200, 150));
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        pHeaderSiswa.setMinimumSize(new java.awt.Dimension(200, 150));
+        pHeaderSiswa.setPreferredSize(new java.awt.Dimension(200, 150));
+        pHeaderSiswa.setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setMinimumSize(new java.awt.Dimension(766, 150));
-        jPanel7.setPreferredSize(new java.awt.Dimension(766, 150));
-        jPanel7.setLayout(new java.awt.BorderLayout());
+        pJumlahSiswa.setBackground(new java.awt.Color(255, 255, 255));
+        pJumlahSiswa.setMinimumSize(new java.awt.Dimension(766, 150));
+        pJumlahSiswa.setPreferredSize(new java.awt.Dimension(766, 150));
+        pJumlahSiswa.setLayout(new java.awt.BorderLayout());
 
         jLabel5.setBackground(new java.awt.Color(51, 153, 255));
         jLabel5.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 18)); // NOI18N
@@ -134,7 +134,7 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel5.setMinimumSize(new java.awt.Dimension(46, 35));
         jLabel5.setOpaque(true);
         jLabel5.setPreferredSize(new java.awt.Dimension(46, 35));
-        jPanel7.add(jLabel5, java.awt.BorderLayout.PAGE_START);
+        pJumlahSiswa.add(jLabel5, java.awt.BorderLayout.PAGE_START);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -143,31 +143,31 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel6.setMaximumSize(new java.awt.Dimension(124, 100));
         jLabel6.setMinimumSize(new java.awt.Dimension(124, 100));
         jLabel6.setPreferredSize(new java.awt.Dimension(124, 100));
-        jPanel7.add(jLabel6, java.awt.BorderLayout.CENTER);
+        pJumlahSiswa.add(jLabel6, java.awt.BorderLayout.CENTER);
 
-        jPanel6.add(jPanel7, java.awt.BorderLayout.PAGE_START);
+        pHeaderSiswa.add(pJumlahSiswa, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.add(jPanel6);
+        jPanel1.add(pHeaderSiswa);
 
-        jPanel8.setMinimumSize(new java.awt.Dimension(200, 150));
-        jPanel8.setPreferredSize(new java.awt.Dimension(200, 150));
-        jPanel8.setLayout(new java.awt.BorderLayout());
+        pHeaderKelas.setMinimumSize(new java.awt.Dimension(200, 150));
+        pHeaderKelas.setPreferredSize(new java.awt.Dimension(200, 150));
+        pHeaderKelas.setLayout(new java.awt.BorderLayout());
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setMinimumSize(new java.awt.Dimension(766, 150));
-        jPanel9.setPreferredSize(new java.awt.Dimension(766, 150));
-        jPanel9.setLayout(new java.awt.BorderLayout());
+        pJumlahKelas.setBackground(new java.awt.Color(255, 255, 255));
+        pJumlahKelas.setMinimumSize(new java.awt.Dimension(766, 150));
+        pJumlahKelas.setPreferredSize(new java.awt.Dimension(766, 150));
+        pJumlahKelas.setLayout(new java.awt.BorderLayout());
 
         jLabel7.setBackground(new java.awt.Color(51, 153, 255));
         jLabel7.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Jumlah Jurusan");
+        jLabel7.setText("Jumlah Kelas");
         jLabel7.setMaximumSize(new java.awt.Dimension(46, 35));
         jLabel7.setMinimumSize(new java.awt.Dimension(46, 35));
         jLabel7.setOpaque(true);
         jLabel7.setPreferredSize(new java.awt.Dimension(46, 35));
-        jPanel9.add(jLabel7, java.awt.BorderLayout.PAGE_START);
+        pJumlahKelas.add(jLabel7, java.awt.BorderLayout.PAGE_START);
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -176,11 +176,11 @@ public class panelDashboard extends javax.swing.JPanel {
         jLabel8.setMaximumSize(new java.awt.Dimension(124, 100));
         jLabel8.setMinimumSize(new java.awt.Dimension(124, 100));
         jLabel8.setPreferredSize(new java.awt.Dimension(124, 100));
-        jPanel9.add(jLabel8, java.awt.BorderLayout.CENTER);
+        pJumlahKelas.add(jLabel8, java.awt.BorderLayout.CENTER);
 
-        jPanel8.add(jPanel9, java.awt.BorderLayout.PAGE_START);
+        pHeaderKelas.add(pJumlahKelas, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.add(jPanel8);
+        jPanel1.add(pHeaderKelas);
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
@@ -196,13 +196,13 @@ public class panelDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel pHeaderGuru;
+    private javax.swing.JPanel pHeaderJurusan;
+    private javax.swing.JPanel pHeaderKelas;
+    private javax.swing.JPanel pHeaderSiswa;
+    private javax.swing.JPanel pJumlahGuru;
+    private javax.swing.JPanel pJumlahJurusan;
+    private javax.swing.JPanel pJumlahKelas;
+    private javax.swing.JPanel pJumlahSiswa;
     // End of variables declaration//GEN-END:variables
 }

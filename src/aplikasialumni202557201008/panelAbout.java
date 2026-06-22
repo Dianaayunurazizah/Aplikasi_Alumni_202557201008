@@ -26,10 +26,10 @@ public class panelAbout extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        pHeaderAbout = new javax.swing.JPanel();
+        lblAbout = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
+        pContentAbout = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -38,22 +38,22 @@ public class panelAbout extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel1.setMinimumSize(new java.awt.Dimension(100, 40));
-        jPanel1.setPreferredSize(new java.awt.Dimension(100, 40));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        pHeaderAbout.setBackground(new java.awt.Color(51, 153, 255));
+        pHeaderAbout.setMinimumSize(new java.awt.Dimension(100, 40));
+        pHeaderAbout.setPreferredSize(new java.awt.Dimension(100, 40));
+        pHeaderAbout.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("About Us");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
-        jPanel1.add(jLabel1, java.awt.BorderLayout.LINE_START);
+        lblAbout.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
+        lblAbout.setForeground(new java.awt.Color(255, 255, 255));
+        lblAbout.setText("About Us");
+        lblAbout.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        pHeaderAbout.add(lblAbout, java.awt.BorderLayout.LINE_START);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/close 22.png"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jPanel1.add(jLabel2, java.awt.BorderLayout.LINE_END);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/close 22.png"))); // NOI18N
+        lblClose.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        pHeaderAbout.add(lblClose, java.awt.BorderLayout.LINE_END);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        add(pHeaderAbout, java.awt.BorderLayout.PAGE_START);
 
         jLabel3.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Aplikasi ini dibuat oleh Muhammad Damar Az Zabarzad");
@@ -67,22 +67,22 @@ public class panelAbout extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
         jLabel6.setText("Institut Teknologi Mojosari");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pContentAboutLayout = new javax.swing.GroupLayout(pContentAbout);
+        pContentAbout.setLayout(pContentAboutLayout);
+        pContentAboutLayout.setHorizontalGroup(
+            pContentAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pContentAboutLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pContentAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pContentAboutLayout.setVerticalGroup(
+            pContentAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pContentAboutLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -94,18 +94,18 @@ public class panelAbout extends javax.swing.JPanel {
                 .addContainerGap(258, Short.MAX_VALUE))
         );
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(pContentAbout, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblAbout;
+    private javax.swing.JLabel lblClose;
+    private javax.swing.JPanel pContentAbout;
+    private javax.swing.JPanel pHeaderAbout;
     // End of variables declaration//GEN-END:variables
 }
