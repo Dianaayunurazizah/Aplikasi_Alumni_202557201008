@@ -30,13 +30,13 @@ public class panelSiswa extends javax.swing.JPanel {
         lblDataSiswa = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         pContentSiswa = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        pTampilan = new javax.swing.JPanel();
+        pTombol = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        pInputan = new javax.swing.JPanel();
         lblFoto = new javax.swing.JLabel();
         lblNis = new javax.swing.JLabel();
         txtNis = new javax.swing.JTextField();
@@ -51,11 +51,11 @@ public class panelSiswa extends javax.swing.JPanel {
         lblHp = new javax.swing.JLabel();
         txtHp = new javax.swing.JTextField();
         lblKelas = new javax.swing.JLabel();
-        txtxKelas = new javax.swing.JTextField();
+        txtKelas = new javax.swing.JTextField();
         lblAlamat = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tareaAlamat = new javax.swing.JTextArea();
-        jPanel4 = new javax.swing.JPanel();
+        pTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDataSiswa = new javax.swing.JTable();
 
@@ -81,12 +81,12 @@ public class panelSiswa extends javax.swing.JPanel {
 
         pContentSiswa.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setMinimumSize(new java.awt.Dimension(960, 339));
-        jPanel3.setPreferredSize(new java.awt.Dimension(960, 339));
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        pTampilan.setMinimumSize(new java.awt.Dimension(960, 339));
+        pTampilan.setPreferredSize(new java.awt.Dimension(960, 339));
+        pTampilan.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setMinimumSize(new java.awt.Dimension(960, 50));
-        jPanel5.setPreferredSize(new java.awt.Dimension(960, 50));
+        pTombol.setMinimumSize(new java.awt.Dimension(960, 50));
+        pTombol.setPreferredSize(new java.awt.Dimension(960, 50));
 
         btnTambah.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         btnTambah.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
@@ -112,11 +112,11 @@ public class panelSiswa extends javax.swing.JPanel {
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/reset white.png"))); // NOI18N
         btnReset.setText("Reset");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout pTombolLayout = new javax.swing.GroupLayout(pTombol);
+        pTombol.setLayout(pTombolLayout);
+        pTombolLayout.setHorizontalGroup(
+            pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTombolLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,21 +127,21 @@ public class panelSiswa extends javax.swing.JPanel {
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(453, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        pTombolLayout.setVerticalGroup(
+            pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTombolLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUbah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jPanel3.add(jPanel5, java.awt.BorderLayout.PAGE_END);
+        pTampilan.add(pTombol, java.awt.BorderLayout.PAGE_END);
 
-        jPanel6.setMinimumSize(new java.awt.Dimension(960, 270));
-        jPanel6.setPreferredSize(new java.awt.Dimension(960, 270));
+        pInputan.setMinimumSize(new java.awt.Dimension(960, 270));
+        pInputan.setPreferredSize(new java.awt.Dimension(960, 270));
 
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFoto.setText("foto");
@@ -174,7 +174,7 @@ public class panelSiswa extends javax.swing.JPanel {
         lblKelas.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblKelas.setText("Kelas");
 
-        txtxKelas.addActionListener(this::txtxKelasActionPerformed);
+        txtKelas.addActionListener(this::txtKelasActionPerformed);
 
         lblAlamat.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblAlamat.setText("Alamat");
@@ -183,15 +183,15 @@ public class panelSiswa extends javax.swing.JPanel {
         tareaAlamat.setRows(5);
         jScrollPane2.setViewportView(tareaAlamat);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
+        pInputan.setLayout(pInputanLayout);
+        pInputanLayout.setHorizontalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNis)
                     .addComponent(lblNama)
                     .addComponent(lblJenisKelamin)
@@ -203,46 +203,46 @@ public class panelSiswa extends javax.swing.JPanel {
                     .addComponent(txtTglLahir)
                     .addComponent(txtNis))
                 .addGap(43, 43, 43)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblHp)
                     .addComponent(txtHp)
                     .addComponent(lblKelas)
-                    .addComponent(txtxKelas)
+                    .addComponent(txtKelas)
                     .addComponent(lblAlamat)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        pInputanLayout.setVerticalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pInputanLayout.createSequentialGroup()
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(pInputanLayout.createSequentialGroup()
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNis)
                             .addComponent(lblHp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNama)
                             .addComponent(lblKelas))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtxKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblJenisKelamin)
                             .addComponent(lblAlamat))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pInputanLayout.createSequentialGroup()
                                 .addComponent(cJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblTempatLahir)
@@ -256,12 +256,12 @@ public class panelSiswa extends javax.swing.JPanel {
                         .addGap(0, 28, Short.MAX_VALUE))))
         );
 
-        jPanel3.add(jPanel6, java.awt.BorderLayout.CENTER);
+        pTampilan.add(pInputan, java.awt.BorderLayout.CENTER);
 
-        pContentSiswa.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        pContentSiswa.add(pTampilan, java.awt.BorderLayout.PAGE_START);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
-        jPanel4.setLayout(new java.awt.CardLayout());
+        pTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
+        pTable.setLayout(new java.awt.CardLayout());
 
         tblDataSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -276,9 +276,9 @@ public class panelSiswa extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblDataSiswa);
 
-        jPanel4.add(jScrollPane1, "card2");
+        pTable.add(jScrollPane1, "card2");
 
-        pContentSiswa.add(jPanel4, java.awt.BorderLayout.CENTER);
+        pContentSiswa.add(pTable, java.awt.BorderLayout.CENTER);
 
         add(pContentSiswa, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -291,9 +291,9 @@ public class panelSiswa extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTempatLahirActionPerformed
 
-    private void txtxKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtxKelasActionPerformed
+    private void txtKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKelasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtxKelasActionPerformed
+    }//GEN-LAST:event_txtKelasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -302,10 +302,6 @@ public class panelSiswa extends javax.swing.JPanel {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cJenisKelamin;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAlamat;
@@ -321,13 +317,17 @@ public class panelSiswa extends javax.swing.JPanel {
     private javax.swing.JLabel lblTempatLahir;
     private javax.swing.JPanel pContentSiswa;
     private javax.swing.JPanel pHeaderSiswa;
+    private javax.swing.JPanel pInputan;
+    private javax.swing.JPanel pTable;
+    private javax.swing.JPanel pTampilan;
+    private javax.swing.JPanel pTombol;
     private javax.swing.JTextArea tareaAlamat;
     private javax.swing.JTable tblDataSiswa;
     private javax.swing.JTextField txtHp;
+    private javax.swing.JTextField txtKelas;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNis;
     private javax.swing.JTextField txtTempatLahir;
     private javax.swing.JTextField txtTglLahir;
-    private javax.swing.JTextField txtxKelas;
     // End of variables declaration//GEN-END:variables
 }

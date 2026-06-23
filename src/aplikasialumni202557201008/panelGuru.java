@@ -30,7 +30,7 @@ public class panelGuru extends javax.swing.JPanel {
         lblDataGuru = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         pContentGuru = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        pInputan = new javax.swing.JPanel();
         lblNip = new javax.swing.JLabel();
         txtNip = new javax.swing.JTextField();
         txtNama = new javax.swing.JTextField();
@@ -39,13 +39,13 @@ public class panelGuru extends javax.swing.JPanel {
         lblJenisKelamin = new javax.swing.JLabel();
         lblAlamat = new javax.swing.JLabel();
         txtAlamat = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        pTampilan = new javax.swing.JPanel();
+        pTombol = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        pTabel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGuru = new javax.swing.JTable();
 
@@ -76,8 +76,8 @@ public class panelGuru extends javax.swing.JPanel {
 
         pContentGuru.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setMinimumSize(new java.awt.Dimension(250, 371));
-        jPanel4.setPreferredSize(new java.awt.Dimension(250, 371));
+        pInputan.setMinimumSize(new java.awt.Dimension(250, 371));
+        pInputan.setPreferredSize(new java.awt.Dimension(250, 371));
 
         lblNip.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblNip.setText("NIP");
@@ -93,13 +93,13 @@ public class panelGuru extends javax.swing.JPanel {
         lblAlamat.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblAlamat.setText("Alamat");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
+        pInputan.setLayout(pInputanLayout);
+        pInputanLayout.setHorizontalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblAlamat)
                     .addComponent(lblJenisKelamin)
                     .addComponent(lblNama)
@@ -110,9 +110,9 @@ public class panelGuru extends javax.swing.JPanel {
                     .addComponent(txtAlamat))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        pInputanLayout.setVerticalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNip)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,9 +132,9 @@ public class panelGuru extends javax.swing.JPanel {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        pContentGuru.add(jPanel4, java.awt.BorderLayout.LINE_START);
+        pContentGuru.add(pInputan, java.awt.BorderLayout.LINE_START);
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        pTampilan.setLayout(new java.awt.BorderLayout());
 
         btnTambah.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         btnTambah.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
@@ -176,11 +176,11 @@ public class panelGuru extends javax.swing.JPanel {
         btnReset.setPreferredSize(new java.awt.Dimension(72, 23));
         btnReset.addActionListener(this::btnResetActionPerformed);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout pTombolLayout = new javax.swing.GroupLayout(pTombol);
+        pTombol.setLayout(pTombolLayout);
+        pTombolLayout.setHorizontalGroup(
+            pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTombolLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,11 +191,11 @@ public class panelGuru extends javax.swing.JPanel {
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        pTombolLayout.setVerticalGroup(
+            pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTombolLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,10 +203,10 @@ public class panelGuru extends javax.swing.JPanel {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel5, java.awt.BorderLayout.PAGE_END);
+        pTampilan.add(pTombol, java.awt.BorderLayout.PAGE_END);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
-        jPanel6.setLayout(new java.awt.CardLayout());
+        pTabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
+        pTabel.setLayout(new java.awt.CardLayout());
 
         tblGuru.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,11 +221,11 @@ public class panelGuru extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblGuru);
 
-        jPanel6.add(jScrollPane1, "card2");
+        pTabel.add(jScrollPane1, "card2");
 
-        jPanel2.add(jPanel6, java.awt.BorderLayout.CENTER);
+        pTampilan.add(pTabel, java.awt.BorderLayout.CENTER);
 
-        pContentGuru.add(jPanel2, java.awt.BorderLayout.CENTER);
+        pContentGuru.add(pTampilan, java.awt.BorderLayout.CENTER);
 
         add(pContentGuru, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -253,10 +253,6 @@ public class panelGuru extends javax.swing.JPanel {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cJenisKelamin;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlamat;
     private javax.swing.JLabel lblClose;
@@ -266,6 +262,10 @@ public class panelGuru extends javax.swing.JPanel {
     private javax.swing.JLabel lblNip;
     private javax.swing.JPanel pContentGuru;
     private javax.swing.JPanel pHeaderGuru;
+    private javax.swing.JPanel pInputan;
+    private javax.swing.JPanel pTabel;
+    private javax.swing.JPanel pTampilan;
+    private javax.swing.JPanel pTombol;
     private javax.swing.JTable tblGuru;
     private javax.swing.JTextField txtAlamat;
     private javax.swing.JTextField txtNama;

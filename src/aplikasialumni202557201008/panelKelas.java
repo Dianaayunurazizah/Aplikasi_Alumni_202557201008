@@ -30,7 +30,7 @@ public class panelKelas extends javax.swing.JPanel {
         lblDataKelas = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         pContentKelas = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        pInputan = new javax.swing.JPanel();
         lblKodekelas = new javax.swing.JLabel();
         txtKodekelas = new javax.swing.JTextField();
         lblNamakelas = new javax.swing.JLabel();
@@ -41,13 +41,13 @@ public class panelKelas extends javax.swing.JPanel {
         cWaliKelas = new javax.swing.JComboBox<>();
         lblJurusan = new javax.swing.JLabel();
         lblWalikelas = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        pTampilan = new javax.swing.JPanel();
+        pTombolKelas = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        pTabelKelas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDataKelas = new javax.swing.JTable();
 
@@ -73,8 +73,8 @@ public class panelKelas extends javax.swing.JPanel {
 
         pContentKelas.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setMinimumSize(new java.awt.Dimension(250, 371));
-        jPanel3.setPreferredSize(new java.awt.Dimension(250, 371));
+        pInputan.setMinimumSize(new java.awt.Dimension(250, 371));
+        pInputan.setPreferredSize(new java.awt.Dimension(250, 371));
 
         lblKodekelas.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblKodekelas.setText("Kode Kelas");
@@ -97,16 +97,16 @@ public class panelKelas extends javax.swing.JPanel {
         lblWalikelas.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblWalikelas.setText("Wali Kelas");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
+        pInputan.setLayout(pInputanLayout);
+        pInputanLayout.setHorizontalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblWalikelas)
                     .addComponent(lblJurusan)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblTingkatan)
                         .addComponent(lblNamakelas)
                         .addComponent(lblKodekelas)
@@ -117,9 +117,9 @@ public class panelKelas extends javax.swing.JPanel {
                         .addComponent(cWaliKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        pInputanLayout.setVerticalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblKodekelas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,9 +143,9 @@ public class panelKelas extends javax.swing.JPanel {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        pContentKelas.add(jPanel3, java.awt.BorderLayout.LINE_START);
+        pContentKelas.add(pInputan, java.awt.BorderLayout.LINE_START);
 
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        pTampilan.setLayout(new java.awt.BorderLayout());
 
         btnTambah.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         btnTambah.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
@@ -187,11 +187,11 @@ public class panelKelas extends javax.swing.JPanel {
         btnReset.setPreferredSize(new java.awt.Dimension(72, 23));
         btnReset.addActionListener(this::btnResetActionPerformed);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout pTombolKelasLayout = new javax.swing.GroupLayout(pTombolKelas);
+        pTombolKelas.setLayout(pTombolKelasLayout);
+        pTombolKelasLayout.setHorizontalGroup(
+            pTombolKelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTombolKelasLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,11 +202,11 @@ public class panelKelas extends javax.swing.JPanel {
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        pTombolKelasLayout.setVerticalGroup(
+            pTombolKelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTombolKelasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pTombolKelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,10 +214,10 @@ public class panelKelas extends javax.swing.JPanel {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel5, java.awt.BorderLayout.PAGE_END);
+        pTampilan.add(pTombolKelas, java.awt.BorderLayout.PAGE_END);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
-        jPanel6.setLayout(new java.awt.CardLayout());
+        pTabelKelas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
+        pTabelKelas.setLayout(new java.awt.CardLayout());
 
         tblDataKelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -232,11 +232,11 @@ public class panelKelas extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblDataKelas);
 
-        jPanel6.add(jScrollPane1, "card2");
+        pTabelKelas.add(jScrollPane1, "card2");
 
-        jPanel4.add(jPanel6, java.awt.BorderLayout.CENTER);
+        pTampilan.add(pTabelKelas, java.awt.BorderLayout.CENTER);
 
-        pContentKelas.add(jPanel4, java.awt.BorderLayout.CENTER);
+        pContentKelas.add(pTampilan, java.awt.BorderLayout.CENTER);
 
         add(pContentKelas, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -266,10 +266,6 @@ public class panelKelas extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cJurusan;
     private javax.swing.JComboBox<String> cTingkatan;
     private javax.swing.JComboBox<String> cWaliKelas;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDataKelas;
@@ -280,6 +276,10 @@ public class panelKelas extends javax.swing.JPanel {
     private javax.swing.JLabel lblWalikelas;
     private javax.swing.JPanel pContentKelas;
     private javax.swing.JPanel pHeaderKelas;
+    private javax.swing.JPanel pInputan;
+    private javax.swing.JPanel pTabelKelas;
+    private javax.swing.JPanel pTampilan;
+    private javax.swing.JPanel pTombolKelas;
     private javax.swing.JTable tblDataKelas;
     private javax.swing.JTextField txtKodekelas;
     private javax.swing.JTextField txtNamakelas;

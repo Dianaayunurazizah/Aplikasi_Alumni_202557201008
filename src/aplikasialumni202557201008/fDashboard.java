@@ -58,6 +58,7 @@ public class fDashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Alumni");
         setMinimumSize(new java.awt.Dimension(1200, 550));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1200, 550));
 
         pSidebar.setBackground(new java.awt.Color(51, 153, 255));

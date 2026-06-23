@@ -26,11 +26,11 @@ public class panelJurusan extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pContentJurusan = new javax.swing.JPanel();
         pHeaderJurusan = new javax.swing.JPanel();
         lblDataJurusan = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        pInputan = new javax.swing.JPanel();
         lblKodejur = new javax.swing.JLabel();
         lblNamajur = new javax.swing.JLabel();
         txtKodejur = new javax.swing.JTextField();
@@ -39,7 +39,7 @@ public class panelJurusan extends javax.swing.JPanel {
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        pTabelJurusan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDataJurusan = new javax.swing.JTable();
 
@@ -47,9 +47,9 @@ public class panelJurusan extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(654, 451));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setMinimumSize(new java.awt.Dimension(100, 200));
-        jPanel1.setPreferredSize(new java.awt.Dimension(100, 200));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        pContentJurusan.setMinimumSize(new java.awt.Dimension(100, 200));
+        pContentJurusan.setPreferredSize(new java.awt.Dimension(100, 200));
+        pContentJurusan.setLayout(new java.awt.BorderLayout());
 
         pHeaderJurusan.setBackground(new java.awt.Color(51, 153, 255));
         pHeaderJurusan.setMinimumSize(new java.awt.Dimension(100, 40));
@@ -74,7 +74,7 @@ public class panelJurusan extends javax.swing.JPanel {
         });
         pHeaderJurusan.add(lblClose, java.awt.BorderLayout.LINE_END);
 
-        jPanel1.add(pHeaderJurusan, java.awt.BorderLayout.PAGE_START);
+        pContentJurusan.add(pHeaderJurusan, java.awt.BorderLayout.PAGE_START);
 
         lblKodejur.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblKodejur.setText("Kode Jurusan");
@@ -110,47 +110,47 @@ public class panelJurusan extends javax.swing.JPanel {
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/reset white.png"))); // NOI18N
         btnReset.setText("Reset");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
+        pInputan.setLayout(pInputanLayout);
+        pInputanLayout.setHorizontalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pInputanLayout.createSequentialGroup()
                         .addComponent(txtKodejur, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNamajur, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pInputanLayout.createSequentialGroup()
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblKodejur, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pInputanLayout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(pInputanLayout.createSequentialGroup()
                                 .addGap(137, 137, 137)
                                 .addComponent(lblNamajur, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        pInputanLayout.setVerticalGroup(
+            pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblKodejur)
                     .addComponent(lblNamajur))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKodejur, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNamajur, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,12 +158,12 @@ public class panelJurusan extends javax.swing.JPanel {
                 .addGap(5, 5, 5))
         );
 
-        jPanel1.add(jPanel4, java.awt.BorderLayout.CENTER);
+        pContentJurusan.add(pInputan, java.awt.BorderLayout.CENTER);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        add(pContentJurusan, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
-        jPanel2.setLayout(new java.awt.CardLayout());
+        pTabelJurusan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
+        pTabelJurusan.setLayout(new java.awt.CardLayout());
 
         tblDataJurusan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,9 +178,9 @@ public class panelJurusan extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblDataJurusan);
 
-        jPanel2.add(jScrollPane1, "card2");
+        pTabelJurusan.add(jScrollPane1, "card2");
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(pTabelJurusan, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
@@ -197,15 +197,15 @@ public class panelJurusan extends javax.swing.JPanel {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDataJurusan;
     private javax.swing.JLabel lblKodejur;
     private javax.swing.JLabel lblNamajur;
+    private javax.swing.JPanel pContentJurusan;
     private javax.swing.JPanel pHeaderJurusan;
+    private javax.swing.JPanel pInputan;
+    private javax.swing.JPanel pTabelJurusan;
     private javax.swing.JTable tblDataJurusan;
     private javax.swing.JTextField txtKodejur;
     private javax.swing.JTextField txtNamajur;

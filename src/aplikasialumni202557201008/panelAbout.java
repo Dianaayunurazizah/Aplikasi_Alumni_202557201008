@@ -30,10 +30,10 @@ public class panelAbout extends javax.swing.JPanel {
         lblAbout = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         pContentAbout = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblpemilikapk = new javax.swing.JLabel();
+        lblNimpemilik = new javax.swing.JLabel();
+        lblProdipemilik = new javax.swing.JLabel();
+        lblInstitut = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
         setLayout(new java.awt.BorderLayout());
@@ -55,17 +55,17 @@ public class panelAbout extends javax.swing.JPanel {
 
         add(pHeaderAbout, java.awt.BorderLayout.PAGE_START);
 
-        jLabel3.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
-        jLabel3.setText("Aplikasi ini dibuat oleh Muhammad Damar Az Zabarzad");
+        lblpemilikapk.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
+        lblpemilikapk.setText("Aplikasi ini dibuat oleh Muhammad Damar Az Zabarzad");
 
-        jLabel4.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
-        jLabel4.setText("NIM : 12345567");
+        lblNimpemilik.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
+        lblNimpemilik.setText("NIM : 12345567");
 
-        jLabel5.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
-        jLabel5.setText("Prodi S1 Sistem Informasi");
+        lblProdipemilik.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
+        lblProdipemilik.setText("Prodi S1 Sistem Informasi");
 
-        jLabel6.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
-        jLabel6.setText("Institut Teknologi Mojosari");
+        lblInstitut.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
+        lblInstitut.setText("Institut Teknologi Mojosari");
 
         javax.swing.GroupLayout pContentAboutLayout = new javax.swing.GroupLayout(pContentAbout);
         pContentAbout.setLayout(pContentAboutLayout);
@@ -74,23 +74,23 @@ public class panelAbout extends javax.swing.JPanel {
             .addGroup(pContentAboutLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(pContentAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(lblpemilikapk)
+                    .addComponent(lblNimpemilik, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProdipemilik, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblInstitut, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         pContentAboutLayout.setVerticalGroup(
             pContentAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pContentAboutLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lblpemilikapk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblNimpemilik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblProdipemilik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(lblInstitut)
                 .addContainerGap(258, Short.MAX_VALUE))
         );
 
@@ -99,12 +99,12 @@ public class panelAbout extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblInstitut;
+    private javax.swing.JLabel lblNimpemilik;
+    private javax.swing.JLabel lblProdipemilik;
+    private javax.swing.JLabel lblpemilikapk;
     private javax.swing.JPanel pContentAbout;
     private javax.swing.JPanel pHeaderAbout;
     // End of variables declaration//GEN-END:variables
