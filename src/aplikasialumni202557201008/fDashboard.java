@@ -23,9 +23,9 @@ public class fDashboard extends javax.swing.JFrame {
      */
     public fDashboard() {
         initComponents();
-        inisialisasiPanel();
+        inisiasiPanel();
     }
-    void inisialisasiPanel(){
+    void inisiasiPanel(){
         cardLayout = (CardLayout)pContent.getLayout();
         pContent.add(new panelDashboard(),"dashboard");
         pContent.add(new panelJurusan(),"jurusan");
