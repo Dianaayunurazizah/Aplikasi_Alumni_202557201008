@@ -52,6 +52,7 @@ public class panelKelas extends javax.swing.JPanel {
         tblDataKelas = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
+        setMinimumSize(new java.awt.Dimension(782, 622));
         setLayout(new java.awt.BorderLayout());
 
         pHeaderKelas.setBackground(new java.awt.Color(51, 153, 255));
@@ -140,7 +141,7 @@ public class panelKelas extends javax.swing.JPanel {
                 .addComponent(lblWalikelas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cWaliKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         pContentKelas.add(pInputan, java.awt.BorderLayout.LINE_START);
@@ -200,7 +201,7 @@ public class panelKelas extends javax.swing.JPanel {
                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         pTombolKelasLayout.setVerticalGroup(
             pTombolKelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

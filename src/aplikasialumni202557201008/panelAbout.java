@@ -36,6 +36,7 @@ public class panelAbout extends javax.swing.JPanel {
         lblInstitut = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
+        setMinimumSize(new java.awt.Dimension(539, 450));
         setLayout(new java.awt.BorderLayout());
 
         pHeaderAbout.setBackground(new java.awt.Color(51, 153, 255));

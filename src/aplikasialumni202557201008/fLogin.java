@@ -5,8 +5,15 @@
 package aplikasialumni202557201008;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.mysql.cj.jdbc.PreparedStatementWrapper;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,10 +42,10 @@ public class fLogin extends javax.swing.JFrame {
         pLogin = new javax.swing.JPanel();
         lblGambar = new javax.swing.JLabel();
         lblUserLogin = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
         lblPasswors = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        pwdPassword = new javax.swing.JPasswordField();
+        tUserName = new javax.swing.JTextField();
+        tPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         lblclose = new javax.swing.JLabel();
 
@@ -53,10 +60,10 @@ public class fLogin extends javax.swing.JFrame {
         lblUserLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUserLogin.setText("User Login");
 
-        lblUsername.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsername.setText("Username");
+        lblUserName.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
+        lblUserName.setForeground(new java.awt.Color(255, 255, 255));
+        lblUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUserName.setText("Username");
 
         lblPasswors.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 16)); // NOI18N
         lblPasswors.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,9 +96,9 @@ public class fLogin extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPasswors)
-                            .addComponent(lblUsername)
-                            .addComponent(txtUsername)
-                            .addComponent(pwdPassword)
+                            .addComponent(lblUserName)
+                            .addComponent(tUserName)
+                            .addComponent(tPassword)
                             .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
                         .addGap(0, 50, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pLoginLayout.createSequentialGroup()
@@ -114,13 +121,13 @@ public class fLogin extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(lblUserLogin)
                 .addGap(76, 76, 76)
-                .addComponent(lblUsername)
+                .addComponent(lblUserName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(lblPasswors)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -138,8 +145,47 @@ public class fLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_lblcloseMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        new fDashboard().setVisible(true);
+        // TODO add your handling code here
+      
+            String username = tUserName.getText();
+            
+            String password = tPassword.getText();
+            //Jika username dan password tidak kosong
+            if (username.length() != 0 && password.length()!= 0)  {
+        
+                try {
+                    //Query SQL untuk mencari username dan password (dihash dengan MD5)
+                    String sql = "SELECT * FROM user WHERE username=? AND password=md5(?)";
+                    //Buat koneksi ke database
+                    Connection con = koneksi.konek();
+                    //Siapkan statement SQL dengan parameter
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    //Isi string pertama dengan username
+                    ps.setString(1, username);
+                    //isi string kedua dengan password yang akan di-hash MD5 di sisi database
+                    ps.setString(2, password);
+                    //Jalankan query dan ambil hasilnya
+                    ResultSet rs = ps.executeQuery();
+                    //Buka form Dashboard
+                    if (rs.next()) {
+                        //tutup frame login
+                        dispose();
+                        //membuka frame dashboard
+                        new fDashboard().setVisible(true);
+                    } else {
+                        //jika data tidak ditemukan , tampilkan pesan error
+                        JOptionPane.showMessageDialog(null, "Username/password salah");
+                    }                    
+                } catch (SQLException sQLException) {
+                    
+                    JOptionPane.showMessageDialog(null, sQLException.getMessage());
+                }
+               
+            }else {
+                
+                JOptionPane.showMessageDialog(null, "Username/password tidak boleh kosong");
+   
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -171,10 +217,10 @@ public class fLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblGambar;
     private javax.swing.JLabel lblPasswors;
     private javax.swing.JLabel lblUserLogin;
-    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblUserName;
     private javax.swing.JLabel lblclose;
     private javax.swing.JPanel pLogin;
-    private javax.swing.JPasswordField pwdPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JPasswordField tPassword;
+    private javax.swing.JTextField tUserName;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,11 @@ public class panelJurusan extends javax.swing.JPanel {
     public panelJurusan() {
         initComponents();
     }
+    void reset(){
+        tKodeJurusan.setText(null);
+        tKodeJurusan.setEditable(true);
+        tNamaJurusan.setText(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,17 +38,18 @@ public class panelJurusan extends javax.swing.JPanel {
         pInputan = new javax.swing.JPanel();
         lblKodejur = new javax.swing.JLabel();
         lblNamajur = new javax.swing.JLabel();
-        txtKodejur = new javax.swing.JTextField();
-        txtNamajur = new javax.swing.JTextField();
+        tKodeJurusan = new javax.swing.JTextField();
+        tNamaJurusan = new javax.swing.JTextField();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         pTabelJurusan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDataJurusan = new javax.swing.JTable();
+        tblJurusan = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
+        setMinimumSize(new java.awt.Dimension(654, 451));
         setPreferredSize(new java.awt.Dimension(654, 451));
         setLayout(new java.awt.BorderLayout());
 
@@ -118,9 +124,9 @@ public class panelJurusan extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pInputanLayout.createSequentialGroup()
-                        .addComponent(txtKodejur, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNamajur, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tNamaJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pInputanLayout.createSequentialGroup()
                         .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,8 +153,8 @@ public class panelJurusan extends javax.swing.JPanel {
                     .addComponent(lblNamajur))
                 .addGap(18, 18, 18)
                 .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtKodejur, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNamajur, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tNamaJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,7 +171,7 @@ public class panelJurusan extends javax.swing.JPanel {
         pTabelJurusan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
         pTabelJurusan.setLayout(new java.awt.CardLayout());
 
-        tblDataJurusan.setModel(new javax.swing.table.DefaultTableModel(
+        tblJurusan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -176,7 +182,7 @@ public class panelJurusan extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDataJurusan);
+        jScrollPane1.setViewportView(tblJurusan);
 
         pTabelJurusan.add(jScrollPane1, "card2");
 
@@ -206,8 +212,8 @@ public class panelJurusan extends javax.swing.JPanel {
     private javax.swing.JPanel pHeaderJurusan;
     private javax.swing.JPanel pInputan;
     private javax.swing.JPanel pTabelJurusan;
-    private javax.swing.JTable tblDataJurusan;
-    private javax.swing.JTextField txtKodejur;
-    private javax.swing.JTextField txtNamajur;
+    private javax.swing.JTextField tKodeJurusan;
+    private javax.swing.JTextField tNamaJurusan;
+    private javax.swing.JTable tblJurusan;
     // End of variables declaration//GEN-END:variables
 }

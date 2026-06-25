@@ -47,7 +47,6 @@ public class panelSiswa extends javax.swing.JPanel {
         lblTempatLahir = new javax.swing.JLabel();
         txtTempatLahir = new javax.swing.JTextField();
         lblTanggalLahir = new javax.swing.JLabel();
-        txtTglLahir = new javax.swing.JTextField();
         lblHp = new javax.swing.JLabel();
         txtHp = new javax.swing.JTextField();
         lblKelas = new javax.swing.JLabel();
@@ -55,11 +54,13 @@ public class panelSiswa extends javax.swing.JPanel {
         lblAlamat = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tareaAlamat = new javax.swing.JTextArea();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         pTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDataSiswa = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
+        setMinimumSize(new java.awt.Dimension(1000, 861));
         setLayout(new java.awt.BorderLayout());
 
         pHeaderSiswa.setBackground(new java.awt.Color(51, 153, 255));
@@ -183,6 +184,8 @@ public class panelSiswa extends javax.swing.JPanel {
         tareaAlamat.setRows(5);
         jScrollPane2.setViewportView(tareaAlamat);
 
+        jDateChooser1.setDateFormatString("yyyy-MM-dd\n");
+
         javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
         pInputan.setLayout(pInputanLayout);
         pInputanLayout.setHorizontalGroup(
@@ -200,8 +203,8 @@ public class panelSiswa extends javax.swing.JPanel {
                     .addComponent(txtNama)
                     .addComponent(cJenisKelamin, 0, 296, Short.MAX_VALUE)
                     .addComponent(txtTempatLahir)
-                    .addComponent(txtTglLahir)
-                    .addComponent(txtNis))
+                    .addComponent(txtNis)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
                 .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblHp)
@@ -215,12 +218,12 @@ public class panelSiswa extends javax.swing.JPanel {
         pInputanLayout.setVerticalGroup(
             pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pInputanLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pInputanLayout.createSequentialGroup()
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pInputanLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pInputanLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNis)
                             .addComponent(lblHp))
@@ -237,23 +240,25 @@ public class panelSiswa extends javax.swing.JPanel {
                             .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblJenisKelamin)
-                            .addComponent(lblAlamat))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pInputanLayout.createSequentialGroup()
-                                .addComponent(cJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblJenisKelamin)
+                                    .addComponent(lblAlamat))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTempatLahir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTanggalLahir))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTglLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 28, Short.MAX_VALUE))))
+                                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pInputanLayout.createSequentialGroup()
+                                        .addComponent(cJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTempatLahir)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTanggalLahir))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(28, 28, 28))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 28, Short.MAX_VALUE))
         );
 
         pTampilan.add(pInputan, java.awt.BorderLayout.CENTER);
@@ -302,6 +307,7 @@ public class panelSiswa extends javax.swing.JPanel {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cJenisKelamin;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAlamat;
@@ -328,6 +334,5 @@ public class panelSiswa extends javax.swing.JPanel {
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNis;
     private javax.swing.JTextField txtTempatLahir;
-    private javax.swing.JTextField txtTglLahir;
     // End of variables declaration//GEN-END:variables
 }

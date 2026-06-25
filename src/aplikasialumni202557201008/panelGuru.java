@@ -50,6 +50,7 @@ public class panelGuru extends javax.swing.JPanel {
         tblGuru = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
+        setMinimumSize(new java.awt.Dimension(769, 451));
         setPreferredSize(new java.awt.Dimension(769, 451));
         setLayout(new java.awt.BorderLayout());
 
