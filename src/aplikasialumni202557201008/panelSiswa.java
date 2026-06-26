@@ -3,6 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasialumni202557201008;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.File;
+import java.nio.file.Files;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +30,25 @@ public class panelSiswa extends javax.swing.JPanel {
      */
     public panelSiswa() {
         initComponents();
+    }
+    void reset(){
+        tNIS.setText(null);
+        tNamaSiswa.setText(null);
+        cJenisKelamin.setSelectedItem(null);
+        tTempatLahir.setText(null);
+        tTanggal.setCalendar(null);
+        tHP.setText(null);
+        cKelas.setSelectedItem(null);
+        tAlamat.setText(null);
+        tFotoPath.setText(null);
+        tFoto.setIcon(null);
+        tFoto.setText("Foto"); 
+    }
+    void comboKelas(){
+        String sql = "SELECT* FROM kelas";
+        
+        Connection conn = koneksi.konek();
+        
     }
 
     /**
@@ -37,27 +71,30 @@ public class panelSiswa extends javax.swing.JPanel {
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         pInputan = new javax.swing.JPanel();
-        lblFoto = new javax.swing.JLabel();
+        tFoto = new javax.swing.JLabel();
         lblNis = new javax.swing.JLabel();
-        txtNis = new javax.swing.JTextField();
+        tNIS = new javax.swing.JTextField();
         lblNama = new javax.swing.JLabel();
-        txtNama = new javax.swing.JTextField();
+        tNamaSiswa = new javax.swing.JTextField();
         lblJenisKelamin = new javax.swing.JLabel();
         cJenisKelamin = new javax.swing.JComboBox<>();
         lblTempatLahir = new javax.swing.JLabel();
-        txtTempatLahir = new javax.swing.JTextField();
+        tTempatLahir = new javax.swing.JTextField();
         lblTanggalLahir = new javax.swing.JLabel();
         lblHp = new javax.swing.JLabel();
-        txtHp = new javax.swing.JTextField();
+        tHP = new javax.swing.JTextField();
         lblKelas = new javax.swing.JLabel();
-        txtKelas = new javax.swing.JTextField();
         lblAlamat = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tareaAlamat = new javax.swing.JTextArea();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        tAlamat = new javax.swing.JTextArea();
+        tTanggal = new com.toedter.calendar.JDateChooser();
+        cKelas = new javax.swing.JComboBox<>();
         pTable = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDataSiswa = new javax.swing.JTable();
+        pPath = new javax.swing.JPanel();
+        tFotoPath = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblSiswa = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
         setMinimumSize(new java.awt.Dimension(1000, 861));
@@ -82,8 +119,8 @@ public class panelSiswa extends javax.swing.JPanel {
 
         pContentSiswa.setLayout(new java.awt.BorderLayout());
 
-        pTampilan.setMinimumSize(new java.awt.Dimension(960, 339));
-        pTampilan.setPreferredSize(new java.awt.Dimension(960, 339));
+        pTampilan.setMinimumSize(new java.awt.Dimension(1235, 388));
+        pTampilan.setPreferredSize(new java.awt.Dimension(1235, 388));
         pTampilan.setLayout(new java.awt.BorderLayout());
 
         pTombol.setMinimumSize(new java.awt.Dimension(960, 50));
@@ -126,7 +163,7 @@ public class panelSiswa extends javax.swing.JPanel {
                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(453, Short.MAX_VALUE))
+                .addContainerGap(742, Short.MAX_VALUE))
         );
         pTombolLayout.setVerticalGroup(
             pTombolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,30 +178,39 @@ public class panelSiswa extends javax.swing.JPanel {
 
         pTampilan.add(pTombol, java.awt.BorderLayout.PAGE_END);
 
-        pInputan.setMinimumSize(new java.awt.Dimension(960, 270));
-        pInputan.setPreferredSize(new java.awt.Dimension(960, 270));
+        pInputan.setMinimumSize(new java.awt.Dimension(1235, 338));
+        pInputan.setPreferredSize(new java.awt.Dimension(1235, 338));
 
-        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFoto.setText("foto");
-        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        tFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tFoto.setText("foto");
+        tFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         lblNis.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblNis.setText("NIS");
 
+        tNIS.setMinimumSize(new java.awt.Dimension(200, 34));
+        tNIS.setPreferredSize(new java.awt.Dimension(200, 34));
+        tNIS.addActionListener(this::tNISActionPerformed);
+
         lblNama.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblNama.setText("Nama");
 
-        txtNama.addActionListener(this::txtNamaActionPerformed);
+        tNamaSiswa.setMinimumSize(new java.awt.Dimension(200, 34));
+        tNamaSiswa.setPreferredSize(new java.awt.Dimension(200, 34));
+        tNamaSiswa.addActionListener(this::tNamaSiswaActionPerformed);
 
         lblJenisKelamin.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblJenisKelamin.setText("Jenis Kelamin");
 
         cJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cJenisKelamin.setPreferredSize(new java.awt.Dimension(200, 34));
 
         lblTempatLahir.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblTempatLahir.setText("Tempat Lahir");
 
-        txtTempatLahir.addActionListener(this::txtTempatLahirActionPerformed);
+        tTempatLahir.setMinimumSize(new java.awt.Dimension(200, 34));
+        tTempatLahir.setPreferredSize(new java.awt.Dimension(200, 34));
+        tTempatLahir.addActionListener(this::tTempatLahirActionPerformed);
 
         lblTanggalLahir.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblTanggalLahir.setText("Tanggal Lahir");
@@ -172,19 +218,25 @@ public class panelSiswa extends javax.swing.JPanel {
         lblHp.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblHp.setText("HP");
 
+        tHP.setMinimumSize(new java.awt.Dimension(200, 34));
+        tHP.setPreferredSize(new java.awt.Dimension(200, 34));
+
         lblKelas.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblKelas.setText("Kelas");
-
-        txtKelas.addActionListener(this::txtKelasActionPerformed);
 
         lblAlamat.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblAlamat.setText("Alamat");
 
-        tareaAlamat.setColumns(20);
-        tareaAlamat.setRows(5);
-        jScrollPane2.setViewportView(tareaAlamat);
+        tAlamat.setColumns(20);
+        tAlamat.setRows(5);
+        jScrollPane2.setViewportView(tAlamat);
 
-        jDateChooser1.setDateFormatString("yyyy-MM-dd\n");
+        tTanggal.setDateFormatString("yyyy-MM-dd\n");
+        tTanggal.setMinimumSize(new java.awt.Dimension(200, 34));
+        tTanggal.setPreferredSize(new java.awt.Dimension(200, 34));
+
+        cKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cKelas.setPreferredSize(new java.awt.Dimension(200, 34));
 
         javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
         pInputan.setLayout(pInputanLayout);
@@ -192,73 +244,69 @@ public class panelSiswa extends javax.swing.JPanel {
             pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pInputanLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                    .addComponent(tTempatLahir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNis)
                     .addComponent(lblNama)
                     .addComponent(lblJenisKelamin)
                     .addComponent(lblTempatLahir)
                     .addComponent(lblTanggalLahir)
-                    .addComponent(txtNama)
-                    .addComponent(cJenisKelamin, 0, 296, Short.MAX_VALUE)
-                    .addComponent(txtTempatLahir)
-                    .addComponent(txtNis)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
+                    .addComponent(tNamaSiswa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tNIS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cJenisKelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
                 .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblHp)
-                    .addComponent(txtHp)
                     .addComponent(lblKelas)
-                    .addComponent(txtKelas)
                     .addComponent(lblAlamat)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(tHP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                    .addComponent(cKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         pInputanLayout.setVerticalGroup(
             pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pInputanLayout.createSequentialGroup()
-                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(17, 17, 17)
+                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pInputanLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pInputanLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNis)
                             .addComponent(lblHp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tNIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNama)
                             .addComponent(lblKelas))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tNamaSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblJenisKelamin)
+                            .addComponent(lblAlamat))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pInputanLayout.createSequentialGroup()
-                                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblJenisKelamin)
-                                    .addComponent(lblAlamat))
+                                .addComponent(cJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pInputanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pInputanLayout.createSequentialGroup()
-                                        .addComponent(cJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblTempatLahir)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblTanggalLahir))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28))
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 28, Short.MAX_VALUE))
+                                .addComponent(lblTempatLahir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTanggalLahir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pTampilan.add(pInputan, java.awt.BorderLayout.CENTER);
@@ -266,9 +314,34 @@ public class panelSiswa extends javax.swing.JPanel {
         pContentSiswa.add(pTampilan, java.awt.BorderLayout.PAGE_START);
 
         pTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
-        pTable.setLayout(new java.awt.CardLayout());
+        pTable.setLayout(new java.awt.BorderLayout());
 
-        tblDataSiswa.setModel(new javax.swing.table.DefaultTableModel(
+        pPath.setMinimumSize(new java.awt.Dimension(100, 30));
+        pPath.setPreferredSize(new java.awt.Dimension(920, 30));
+
+        tFotoPath.setText("jLabel1");
+
+        javax.swing.GroupLayout pPathLayout = new javax.swing.GroupLayout(pPath);
+        pPath.setLayout(pPathLayout);
+        pPathLayout.setHorizontalGroup(
+            pPathLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pPathLayout.createSequentialGroup()
+                .addComponent(tFotoPath)
+                .addGap(0, 1172, Short.MAX_VALUE))
+        );
+        pPathLayout.setVerticalGroup(
+            pPathLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPathLayout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(tFotoPath)
+                .addContainerGap())
+        );
+
+        pTable.add(pPath, java.awt.BorderLayout.PAGE_END);
+
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        tblSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -279,26 +352,28 @@ public class panelSiswa extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDataSiswa);
+        jScrollPane3.setViewportView(tblSiswa);
 
-        pTable.add(jScrollPane1, "card2");
+        jPanel2.add(jScrollPane3, "card2");
+
+        pTable.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pContentSiswa.add(pTable, java.awt.BorderLayout.CENTER);
 
         add(pContentSiswa, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+    private void tNamaSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNamaSiswaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaActionPerformed
+    }//GEN-LAST:event_tNamaSiswaActionPerformed
 
-    private void txtTempatLahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTempatLahirActionPerformed
+    private void tTempatLahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tTempatLahirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTempatLahirActionPerformed
+    }//GEN-LAST:event_tTempatLahirActionPerformed
 
-    private void txtKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKelasActionPerformed
+    private void tNISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNISActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtKelasActionPerformed
+    }//GEN-LAST:event_tNISActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,13 +382,13 @@ public class panelSiswa extends javax.swing.JPanel {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cJenisKelamin;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> cKelas;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblAlamat;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDataSiswa;
-    private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblHp;
     private javax.swing.JLabel lblJenisKelamin;
     private javax.swing.JLabel lblKelas;
@@ -324,15 +399,18 @@ public class panelSiswa extends javax.swing.JPanel {
     private javax.swing.JPanel pContentSiswa;
     private javax.swing.JPanel pHeaderSiswa;
     private javax.swing.JPanel pInputan;
+    private javax.swing.JPanel pPath;
     private javax.swing.JPanel pTable;
     private javax.swing.JPanel pTampilan;
     private javax.swing.JPanel pTombol;
-    private javax.swing.JTextArea tareaAlamat;
-    private javax.swing.JTable tblDataSiswa;
-    private javax.swing.JTextField txtHp;
-    private javax.swing.JTextField txtKelas;
-    private javax.swing.JTextField txtNama;
-    private javax.swing.JTextField txtNis;
-    private javax.swing.JTextField txtTempatLahir;
+    private javax.swing.JTextArea tAlamat;
+    private javax.swing.JLabel tFoto;
+    private javax.swing.JLabel tFotoPath;
+    private javax.swing.JTextField tHP;
+    private javax.swing.JTextField tNIS;
+    private javax.swing.JTextField tNamaSiswa;
+    private com.toedter.calendar.JDateChooser tTanggal;
+    private javax.swing.JTextField tTempatLahir;
+    private javax.swing.JTable tblSiswa;
     // End of variables declaration//GEN-END:variables
 }

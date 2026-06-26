@@ -3,7 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasialumni202557201008;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Acer
@@ -15,8 +21,139 @@ public class panelKelas extends javax.swing.JPanel {
      */
     public panelKelas() {
         initComponents();
+        reset();
+        load_tabel_kelas();
+        comboJurusan();
+        comboWali();
     }
+    void reset(){
+        tKodeKelas.setText(null);
+        tKodeKelas.setEditable(true);
+        tNamaKelas.setText(null);
+        cTingkatan.setSelectedItem(null);
+        cJurusan.setSelectedItem(null);
+        cWali.setSelectedItem(null);
+    }
+    void load_tabel_kelas(){
+        
+        DefaultTableModel mdl = new DefaultTableModel();
+        
+        mdl.addColumn("Kode Kelas");
+        mdl.addColumn("Nama Kelas");
+        mdl.addColumn("Tingkatan");
+        mdl.addColumn("Jurusan");
+        mdl.addColumn("Wali Kelas");
+        
+        String sql = "SELECT k.id_kelas,k.nama_kelas,k.tingkatan,j.nama_jur,g.nama_guru "
+                +"FROM kelas k "
+                +"LEFT JOIN jurusan j ON k.kode_jur=j.kode_jur "
+                +"LEFT JOIN guru g ON k.nip_wali_kelas=g.nip";
+        
+        try {
+            Connection conn = koneksi.konek();
 
+            Statement st = conn.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String kodeKelas = rs.getString("id_kelas");
+                String namaKelas = rs.getString("nama_kelas");
+                String tingkatan = rs.getString("tingkatan");
+                String jurusan = rs.getString("nama_jur");
+                String waliKelas = rs.getString("nama_guru");
+
+                Object[] baris = {kodeKelas, namaKelas, tingkatan, jurusan, waliKelas};
+
+                mdl.addRow(baris);
+            }
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null,"Gagal mengambil data!");
+        }
+        tblKelas.setModel(mdl);
+    }
+    void comboJurusan(){
+        try {
+        String sql = "SELECT * FROM jurusan";
+
+            Connection conn = koneksi.konek();
+
+            Statement statement = conn.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                cJurusan.addItem(resultSet.getString("nama_jur"));
+            }
+        } catch (SQLException sQLException) {
+            
+        }
+        cJurusan.setSelectedItem(null);
+    }
+    void comboWali(){
+        try{
+        String sql = "SELECT * FROM guru";
+
+            Connection conn = koneksi.konek();
+
+            Statement statement = conn.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                cWali.addItem(resultSet.getString("nama_guru"));
+            }
+        } catch (SQLException sQLException) {
+            
+        }
+        cWali.setSelectedItem(null);
+    }
+    String KodeJurusan(String NamaJurusan) {
+        try{
+        String sql = "SELECT * FROM jurusan WHERE nama_jur=?";
+
+            Connection conn = koneksi.konek();
+
+            Statement statement = conn.createStatement();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1,NamaJurusan);
+            
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                return resultSet.getString("kode_jur");
+            }
+        } catch (Exception e) {
+            return "";
+            
+        }
+        return"";
+    }
+    String NIP(String NamaGuru){
+       try{
+        String sql = "SELECT * FROM guru WHERE nama_guru=?";
+
+            Connection conn = koneksi.konek();
+
+            Statement statement = conn.createStatement();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1,NamaGuru);
+            
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                return resultSet.getString("nip");
+            }
+        } catch (Exception e) {
+            return "";
+            
+        }
+        return"";
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,6 +368,11 @@ public class panelKelas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblKelas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKelasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblKelas);
 
         pTabelKelas.add(jScrollPane1, "card2");
@@ -244,19 +386,141 @@ public class panelKelas extends javax.swing.JPanel {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
+        String KodeKelas =tKodeKelas.getText();
+        
+        String NamaKelas =tNamaKelas.getText();
+        
+        String Tingkatan =cTingkatan.getSelectedItem().toString();
+        
+         String Jurusan =cJurusan.getSelectedItem().toString();
+         
+          String WaliKelas =cWali.getSelectedItem().toString();
+          
+          try {
+            String sql = "INSERT INTO kelas(id_kelas, nama_kelas,tingkatan,kode_jur,nip_wali_kelas)"
+                    + "VALUES (?,?,?,?,?)";
+            
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setString(1, KodeKelas);
+            statement.setString(2, NamaKelas);
+            statement.setString(3, Tingkatan);
+            statement.setString(4, Jurusan);
+            statement.setString(5, WaliKelas);
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Data gagal disimpan!");
+        }
+          
+       load_tabel_kelas();
+          
+       reset();
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
+        String KodeKelas =tKodeKelas.getText();
+        
+        String NamaKelas =tNamaKelas.getText();
+        
+        String Tingkatan =cTingkatan.getSelectedItem().toString();
+        
+         String Jurusan =cJurusan.getSelectedItem().toString();
+         
+          String WaliKelas =cWali.getSelectedItem().toString();
+          
+          try {
+            String sql = "UPDATE kelas SET nama_kelas=?, tingkatan=?, kode_jur=?, nip_wali_kelas=?"
+                    + "WHERE id_kelas=?";
+            
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setString(1, NamaKelas);
+            statement.setString(2, Tingkatan);
+            statement.setString(3, Jurusan);
+            statement.setString(4, WaliKelas);
+            statement.setString(5, KodeKelas);
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Data gagal diubah!");
+        }
+          
+       load_tabel_kelas();
+          
+       reset();
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
+        String KodeKelas =tKodeKelas.getText();
+        
+          try {
+            String sql = "DELETE FROM kelas WHERE id_kelas=?";
+            
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setString(1, KodeKelas);
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Data gagal dihapus!");
+        }
+          
+       load_tabel_kelas();
+          
+       reset();
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        reset();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void tblKelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKelasMouseClicked
+        // TODO add your handling code here:
+        int barisYangDipilih = tblKelas.rowAtPoint(evt.getPoint());
+        
+        String KodeKelas = tblKelas.getValueAt(barisYangDipilih,0).toString();
+        
+        String NamaKelas = tblKelas.getValueAt(barisYangDipilih,1).toString();
+        
+        String Tingkatan = tblKelas.getValueAt(barisYangDipilih,2).toString();
+        
+        String Jurusan = tblKelas.getValueAt(barisYangDipilih,3).toString();
+        
+        String WaliKelas;
+        
+        if(tblKelas.getValueAt(barisYangDipilih, 4) !=null){
+            WaliKelas =tblKelas.getValueAt(barisYangDipilih, 4).toString();
+  
+        }else {
+            WaliKelas=null;
+        }
+        tKodeKelas.setText(KodeKelas);
+        tKodeKelas.setEditable(false);
+        
+        tNamaKelas.setText(NamaKelas);
+        
+        cTingkatan.setSelectedItem(Tingkatan);
+        
+        cJurusan.setSelectedItem(Jurusan);
+        
+        cWali.setSelectedItem(WaliKelas);
+    }//GEN-LAST:event_tblKelasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

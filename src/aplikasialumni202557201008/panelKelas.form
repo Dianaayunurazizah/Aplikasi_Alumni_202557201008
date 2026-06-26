@@ -454,6 +454,9 @@
                           </Table>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblKelasMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
