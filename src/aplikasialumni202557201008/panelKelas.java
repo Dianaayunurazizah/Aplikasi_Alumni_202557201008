@@ -32,13 +32,13 @@ public class panelKelas extends javax.swing.JPanel {
         pContentKelas = new javax.swing.JPanel();
         pInputan = new javax.swing.JPanel();
         lblKodekelas = new javax.swing.JLabel();
-        txtKodekelas = new javax.swing.JTextField();
+        tKodeKelas = new javax.swing.JTextField();
         lblNamakelas = new javax.swing.JLabel();
-        txtNamakelas = new javax.swing.JTextField();
+        tNamaKelas = new javax.swing.JTextField();
         lblTingkatan = new javax.swing.JLabel();
         cTingkatan = new javax.swing.JComboBox<>();
         cJurusan = new javax.swing.JComboBox<>();
-        cWaliKelas = new javax.swing.JComboBox<>();
+        cWali = new javax.swing.JComboBox<>();
         lblJurusan = new javax.swing.JLabel();
         lblWalikelas = new javax.swing.JLabel();
         pTampilan = new javax.swing.JPanel();
@@ -49,7 +49,7 @@ public class panelKelas extends javax.swing.JPanel {
         btnReset = new javax.swing.JButton();
         pTabelKelas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDataKelas = new javax.swing.JTable();
+        tblKelas = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
         setMinimumSize(new java.awt.Dimension(782, 622));
@@ -90,7 +90,7 @@ public class panelKelas extends javax.swing.JPanel {
 
         cJurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        cWaliKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cWali.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblJurusan.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblJurusan.setText("Jurusan");
@@ -111,11 +111,11 @@ public class panelKelas extends javax.swing.JPanel {
                         .addComponent(lblTingkatan)
                         .addComponent(lblNamakelas)
                         .addComponent(lblKodekelas)
-                        .addComponent(txtKodekelas)
-                        .addComponent(txtNamakelas, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addComponent(tKodeKelas)
+                        .addComponent(tNamaKelas, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                         .addComponent(cTingkatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cJurusan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cWaliKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cWali, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         pInputanLayout.setVerticalGroup(
@@ -124,11 +124,11 @@ public class panelKelas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblKodekelas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtKodekelas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tKodeKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNamakelas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNamakelas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tNamaKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTingkatan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,7 +140,7 @@ public class panelKelas extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblWalikelas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cWaliKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cWali, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(222, Short.MAX_VALUE))
         );
 
@@ -220,7 +220,7 @@ public class panelKelas extends javax.swing.JPanel {
         pTabelKelas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(242, 242, 242), 20));
         pTabelKelas.setLayout(new java.awt.CardLayout());
 
-        tblDataKelas.setModel(new javax.swing.table.DefaultTableModel(
+        tblKelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -231,7 +231,7 @@ public class panelKelas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDataKelas);
+        jScrollPane1.setViewportView(tblKelas);
 
         pTabelKelas.add(jScrollPane1, "card2");
 
@@ -266,7 +266,7 @@ public class panelKelas extends javax.swing.JPanel {
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cJurusan;
     private javax.swing.JComboBox<String> cTingkatan;
-    private javax.swing.JComboBox<String> cWaliKelas;
+    private javax.swing.JComboBox<String> cWali;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDataKelas;
@@ -281,8 +281,8 @@ public class panelKelas extends javax.swing.JPanel {
     private javax.swing.JPanel pTabelKelas;
     private javax.swing.JPanel pTampilan;
     private javax.swing.JPanel pTombolKelas;
-    private javax.swing.JTable tblDataKelas;
-    private javax.swing.JTextField txtKodekelas;
-    private javax.swing.JTextField txtNamakelas;
+    private javax.swing.JTextField tKodeKelas;
+    private javax.swing.JTextField tNamaKelas;
+    private javax.swing.JTable tblKelas;
     // End of variables declaration//GEN-END:variables
 }

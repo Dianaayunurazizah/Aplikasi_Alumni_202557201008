@@ -3,7 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasialumni202557201008;
-
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Acer
@@ -15,6 +22,48 @@ public class panelGuru extends javax.swing.JPanel {
      */
     public panelGuru() {
         initComponents();
+        reset();
+        load_tabel_guru();
+    }
+    void reset(){
+        tNIP.setText(null);
+        tNIP.setEditable(true);
+        tNamaGuru.setText(null);
+        cJenisKelamin.setSelectedItem(null);
+        tAlamat.setText(null);
+    }
+    void load_tabel_guru(){
+        DefaultTableModel mdl =new DefaultTableModel();
+        
+        mdl.addColumn("NIP");
+        mdl.addColumn("Nama Guru");
+        mdl.addColumn("L/P");
+        mdl.addColumn("Alamat");
+        
+        String sql = "SELECT * FROM guru";
+        
+        try {
+            Connection conn = koneksi.konek();
+
+            Statement st = conn.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String NIP = rs.getString("nip");
+                String namaGuru = rs.getString("nama_guru");
+                String jenisKelamin = rs.getString("gender");
+                String alamat = rs.getString("alamat");
+
+                Object[] baris = {NIP, namaGuru, jenisKelamin, alamat};
+
+                mdl.addRow(baris);
+            }
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null,"Gagal mengambil data");
+        }
+        
+        tblGuru.setModel(mdl);
     }
 
     /**
@@ -32,13 +81,13 @@ public class panelGuru extends javax.swing.JPanel {
         pContentGuru = new javax.swing.JPanel();
         pInputan = new javax.swing.JPanel();
         lblNip = new javax.swing.JLabel();
-        txtNip = new javax.swing.JTextField();
-        txtNama = new javax.swing.JTextField();
+        tNIP = new javax.swing.JTextField();
+        tNamaGuru = new javax.swing.JTextField();
         lblNama = new javax.swing.JLabel();
         cJenisKelamin = new javax.swing.JComboBox<>();
         lblJenisKelamin = new javax.swing.JLabel();
         lblAlamat = new javax.swing.JLabel();
-        txtAlamat = new javax.swing.JTextField();
+        tAlamat = new javax.swing.JTextField();
         pTampilan = new javax.swing.JPanel();
         pTombol = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
@@ -105,10 +154,10 @@ public class panelGuru extends javax.swing.JPanel {
                     .addComponent(lblJenisKelamin)
                     .addComponent(lblNama)
                     .addComponent(lblNip)
-                    .addComponent(txtNip)
-                    .addComponent(txtNama)
+                    .addComponent(tNIP)
+                    .addComponent(tNamaGuru)
                     .addComponent(cJenisKelamin, 0, 220, Short.MAX_VALUE)
-                    .addComponent(txtAlamat))
+                    .addComponent(tAlamat))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         pInputanLayout.setVerticalGroup(
@@ -117,11 +166,11 @@ public class panelGuru extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblNip)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNip, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tNIP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(lblNama)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tNamaGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblJenisKelamin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,7 +178,7 @@ public class panelGuru extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAlamat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -220,6 +269,11 @@ public class panelGuru extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblGuru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGuruMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGuru);
 
         pTabel.add(jScrollPane1, "card2");
@@ -233,19 +287,168 @@ public class panelGuru extends javax.swing.JPanel {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
+        String NIP = tNIP.getText();
+        
+        String namaGuru = tNamaGuru.getText();
+        
+        String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
+        
+        String alamat = tAlamat.getText();
+        
+        String jK = null;
+        
+        switch (jenisKelamin){
+            case "Laki-Laki":
+                jK="L";
+                break;
+            case "Perempuan":
+                jK ="P";
+                break;
+            default:
+                jK =null;
+                break;
+        }
+        
+        String sql ="INSERT INTO guru(nip, nama_guru, gender, alamat) VALUES(?,?,?,?)";
+        
+        try {
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, NIP);
+            
+            ps.setString(2, namaGuru);
+            
+            ps.setString(3, jK);
+            
+            ps.setString(4, alamat);
+            
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null,"Data gagal disimpan");
+        } 
+        load_tabel_guru();
+        
+        reset();
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
+        String NIP = tNIP.getText();
+        
+        String namaGuru = tNamaGuru.getText();
+        
+        String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
+        
+        String alamat = tAlamat.getText();
+        
+        String jK = null;
+        
+        switch (jenisKelamin){
+            case "Laki-Laki":
+                jK="L";
+                break;
+            case "Perempuan":
+                jK ="P";
+                break;
+            default:
+                jK =null;
+                break;
+        }
+        
+        String sql ="UPDATE guru SET nama_guru=?, gender=?, alamt=? WHERE nip=?";
+        
+        try {
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, namaGuru);
+            
+            ps.setString(2, jK);
+            
+            ps.setString(3, alamat);
+            
+            ps.setString(4, NIP);
+            
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null,"Data gagal diubah");
+        } 
+        load_tabel_guru();
+        
+        reset();
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
+        String NIP = tNIP.getText();
+       
+        String sql ="DELETE FROM guru WHERE nip=?";
+        
+        try {
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, NIP);
+            
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null,"Data gagal dihapus");
+        } 
+        load_tabel_guru();
+        
+        reset();
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        reset();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void tblGuruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGuruMouseClicked
+        // TODO add your handling code here:
+        int barisYangDipilih = tblGuru.rowAtPoint(evt.getPoint());
+        
+        String NIP = tblGuru.getValueAt(barisYangDipilih, 0).toString();
+        
+        String namaGuru = tblGuru.getValueAt(barisYangDipilih, 1).toString();
+        
+        String jenisKelamin = tblGuru.getValueAt(barisYangDipilih, 2).toString();
+        
+        String alamat = tblGuru.getValueAt(barisYangDipilih, 3).toString();
+        
+        tNIP.setText(NIP);
+        
+        tNIP.setEditable(false);
+        
+        tNamaGuru.setText(namaGuru);
+        
+        tAlamat.setText(alamat);
+        
+        switch(jenisKelamin){
+        
+                case "L":
+                cJenisKelamin.setSelectedItem("Laki-Laki");
+                break;
+                
+                case "P":
+                cJenisKelamin.setSelectedItem("Perempuan");
+                break;
+                
+                default :
+                cJenisKelamin.setSelectedItem(null);
+                break;
+    }
+    }//GEN-LAST:event_tblGuruMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -267,9 +470,9 @@ public class panelGuru extends javax.swing.JPanel {
     private javax.swing.JPanel pTabel;
     private javax.swing.JPanel pTampilan;
     private javax.swing.JPanel pTombol;
+    private javax.swing.JTextField tAlamat;
+    private javax.swing.JTextField tNIP;
+    private javax.swing.JTextField tNamaGuru;
     private javax.swing.JTable tblGuru;
-    private javax.swing.JTextField txtAlamat;
-    private javax.swing.JTextField txtNama;
-    private javax.swing.JTextField txtNip;
     // End of variables declaration//GEN-END:variables
 }
