@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasialumni202557201008;
-import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
 import java.nio.file.Files;
@@ -30,6 +29,9 @@ public class panelSiswa extends javax.swing.JPanel {
      */
     public panelSiswa() {
         initComponents();
+        reset();
+        load_tabel_siswa();
+        comboKelas();
     }
     void reset(){
         tNIS.setText(null);
@@ -45,10 +47,62 @@ public class panelSiswa extends javax.swing.JPanel {
         tFoto.setText("Foto"); 
     }
     void comboKelas(){
-        String sql = "SELECT* FROM kelas";
+        try {
+            String sql = "SELECT* FROM kelas";
+
+            Connection conn = koneksi.konek();
+
+            Statement statement = conn.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                cKelas.addItem(resultSet.getString("id_kelas"));
+            }
+        } catch (SQLException e) {
+            
+        }
         
-        Connection conn = koneksi.konek();
+        cKelas.setSelectedItem(null);
+    }
+    void load_tabel_siswa(){
         
+        DefaultTableModel mdl = new DefaultTableModel();
+        
+        mdl.addColumn("NIS");
+        mdl.addColumn("Nama Siswa");
+        mdl.addColumn("L/P");
+        mdl.addColumn("Tempat Lahir");
+        mdl.addColumn("Tgl Lahir");
+        mdl.addColumn("Kelas");
+        mdl.addColumn("HP");
+        
+        String sql= "SELECT * FROM siswa";
+        
+        try {
+            Connection conn = koneksi.konek();
+
+            Statement st = conn.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String nis = rs.getString("nis");
+                String namaSiswa = rs.getString("nama_siswa");
+                String jenisKelamin = rs.getString("gender");
+                String tempatLahir = rs.getString("tempat_lahir");
+                String tglLahir = rs.getString("tgl_lahir");
+                String kelas = rs.getString("id_kelas");
+                String hp = rs.getString("no_hp");
+
+                Object[] baris = {nis, namaSiswa, jenisKelamin, tempatLahir, tglLahir, kelas, hp};
+
+                mdl.addRow(baris);
+            }
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null,"Gagal Mengambil Data");
+        }
+        tblSiswa.setModel(mdl);
     }
 
     /**
@@ -131,24 +185,28 @@ public class panelSiswa extends javax.swing.JPanel {
         btnTambah.setForeground(new java.awt.Color(255, 255, 255));
         btnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/plus white.png"))); // NOI18N
         btnTambah.setText("Tambah");
+        btnTambah.addActionListener(this::btnTambahActionPerformed);
 
         btnUbah.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
         btnUbah.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
         btnUbah.setForeground(new java.awt.Color(255, 255, 255));
         btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/edit white.png"))); // NOI18N
         btnUbah.setText("Ubah");
+        btnUbah.addActionListener(this::btnUbahActionPerformed);
 
         btnHapus.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
         btnHapus.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
         btnHapus.setForeground(new java.awt.Color(255, 255, 255));
         btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/hapus white.png"))); // NOI18N
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(this::btnHapusActionPerformed);
 
         btnReset.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
         btnReset.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 14)); // NOI18N
         btnReset.setForeground(new java.awt.Color(255, 255, 255));
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasialumni202557201008/img/reset white.png"))); // NOI18N
         btnReset.setText("Reset");
+        btnReset.addActionListener(this::btnResetActionPerformed);
 
         javax.swing.GroupLayout pTombolLayout = new javax.swing.GroupLayout(pTombol);
         pTombol.setLayout(pTombolLayout);
@@ -184,6 +242,11 @@ public class panelSiswa extends javax.swing.JPanel {
         tFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tFoto.setText("foto");
         tFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        tFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tFotoMouseClicked(evt);
+            }
+        });
 
         lblNis.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblNis.setText("NIS");
@@ -352,6 +415,11 @@ public class panelSiswa extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSiswa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSiswaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblSiswa);
 
         jPanel2.add(jScrollPane3, "card2");
@@ -374,6 +442,453 @@ public class panelSiswa extends javax.swing.JPanel {
     private void tNISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNISActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tNISActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        reset();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void tblSiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSiswaMouseClicked
+        // TODO add your handling code here:
+        int baris = tblSiswa.rowAtPoint(evt.getPoint());
+        
+        String nis = tblSiswa.getValueAt(baris, 0).toString();
+        
+        String namaSiswa = tblSiswa.getValueAt(baris, 1).toString();
+        
+        Object jkObj = tblSiswa.getValueAt(baris, 2);
+        
+        Object tempatObj = tblSiswa.getValueAt(baris, 3);
+        
+        Object tglObj = tblSiswa.getValueAt(baris, 4);
+        
+        Object kelasObj = tblSiswa.getValueAt(baris, 5);
+        
+        Object hpObj = tblSiswa.getValueAt(baris, 6);
+        
+        //menampilkan nama siswa ke field input dan membuatnya tidak bisa diubah
+        tNIS.setText(nis);
+        tNIS.setEditable(false);
+        
+        tNamaSiswa.setText(namaSiswa);
+        
+        String jenisKelamin=(jkObj != null)?
+                jkObj.toString():null;
+        String tempatLahir=(tempatObj != null)?
+                tempatObj.toString():null;
+        String tglLahir=(tglObj!= null)?
+                tglObj.toString():null;
+        String idKelas=(kelasObj != null)?
+                kelasObj.toString():null;
+        String noHP=(hpObj != null)?
+                hpObj.toString():null;
+        
+        tTempatLahir.setText(tempatLahir);
+        tHP.setText(noHP);
+        cKelas.setSelectedItem(idKelas);
+        
+        if (tglLahir!=null && !tglLahir.isEmpty()){
+            try {
+                tTanggal.setDate(java.sql.Date.valueOf(tglLahir));
+            } catch (IllegalArgumentException e) {
+                tTanggal.setDate(null);
+            }
+        }else {
+            tTanggal.setDate(null);
+        }
+        
+        switch (jenisKelamin){
+            case "L":
+            cJenisKelamin.setSelectedItem("Laki-Laki");
+            break;
+            
+            case "P":
+            cJenisKelamin.setSelectedItem("Perempuan");
+            break;
+            
+            default:
+            cJenisKelamin.setSelectedItem(null);
+            break;
+        }
+        
+        try {
+            String sql = "SELECT alamat, foto FROM siswa WHERE nis =?";
+            
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement ps = conn.prepareCall(sql);
+            
+            ps.setString(1, nis);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                String alamat = rs.getString("alamat");
+                String foto = rs.getString("foto");
+                
+                tAlamat.setText(alamat);
+                
+                if (foto != null && !foto.isEmpty()) {
+                    ImageIcon icon = new ImageIcon(foto);
+                    Image image = icon.getImage().getScaledInstance(tFoto.getWidth(), tFoto.getHeight(), Image.SCALE_SMOOTH);
+                    
+                    tFotoPath.setText(foto);
+                    tFoto.setText(null);
+                    tFoto.setIcon(new ImageIcon(image));
+                } else {
+                    tFoto.setText("Foto");
+                    tFoto.setIcon(null);
+                    
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tblSiswaMouseClicked
+
+    private void tFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tFotoMouseClicked
+        // TODO add your handling code here:
+        try {
+            JFileChooser chooser = new JFileChooser();
+            
+            int result = chooser.showOpenDialog(null);
+            
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                
+                if (file != null) {
+                    ImageIcon icon = new ImageIcon(file.toString());
+                    
+                    Image image = icon.getImage().getScaledInstance(
+                            tFoto.getWidth(),
+                            tFoto.getHeight(),
+                            Image.SCALE_SMOOTH);
+                    
+                    ImageIcon ic = new ImageIcon(image);
+                    
+                    tFoto.setText(null);
+                    
+                    tFoto.setIcon(ic);
+                    
+                    String filename = file.getAbsolutePath();
+                    tFotoPath.setText(filename);
+                }
+            } else {
+                System.out.println("Pemilihan file dibatalkan oleh pengguna");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error Upload : ");
+        }
+    }//GEN-LAST:event_tFotoMouseClicked
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+        // Mengambil teks dari field NIS
+        
+            String nis = tNIS.getText();
+ 
+    // Mengambil teks dari field Nama Siswa
+                String namaSiswa = tNamaSiswa.getText();
+
+    // Mengambil item yang dipilih dari combo box jenis kelamin dan mengubahnya menjadi string
+                String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
+
+    // Variabel untuk menyimpan hasil konversi jenis kelamin (L/P)
+                String jK = null;
+
+    // Mengambil teks dari field Tempat Lahir
+                String tempatLahir = tTempatLahir.getText();
+
+    // Mengambil tanggal dari komponen kalender
+                Date tglLahirDate = tTanggal.getDate();
+
+    // Mengubah tanggal lahir menjadi format "yyyy-MM-dd"
+                String tglLahir = new SimpleDateFormat("yyyy-MM-dd").format(tglLahirDate);
+
+    // Mengambil teks dari field nomor HP
+                String hp = tHP.getText();
+
+    // Mengambil item yang dipilih dari combo box kelas
+                String kelas = cKelas.getSelectedItem().toString();
+
+    // Mengambil teks dari field alamat
+                String alamat = tAlamat.getText();
+
+    // Mengambil path file dari label path foto
+                String filePath = tFotoPath.getText();
+
+    // Konversi jenis kelamin dari teks menjadi kode (L atau P)
+            switch (jenisKelamin) {
+            case "Laki - laki":
+            jK = "L";
+            break;
+            case "Perempuan":
+            jK = "P";
+            break;
+            default:
+            jK = null;
+            break;
+}
+ 
+// Variabel untuk menyimpan path file foto tujuan
+            String foto = null;
+ 
+// Mengecek apakah ada path file foto yang dipilih
+        if (filePath.length() != 0) {
+            try {
+        // Menyimpan path sumber file
+                String sourcePath = filePath;
+                File sourceFile = new File(sourcePath);
+
+                // Menentukan folder tujuan untuk menyimpan foto
+                String destinationFolderPath = "src/foto/";
+                File destinationFolder = new File(destinationFolderPath);
+
+                // Jika folder tujuan belum ada, buat folder tersebut
+                if (!destinationFolder.exists()) {
+                    destinationFolder.mkdir();
+                }
+ 
+                // Mengambil ekstensi file (contoh: jpg, png, dll)
+                String extension = sourcePath.substring(sourcePath.lastIndexOf('.') + 1);
+
+                // Membuat nama file baru yang unik berdasarkan timestamp
+                String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+                String destinationFileName = "foto-" + timestamp + "." + extension;
+
+                // Membuat file tujuan dengan path dan nama file baru
+                File destinationFile = new File(destinationFolderPath + destinationFileName);
+
+                // Menyalin file dari sumber ke tujuan
+                Files.copy(sourceFile.toPath(), destinationFile.toPath());
+
+                // Menyimpan path foto yang telah dipindahkan
+                foto = destinationFile.getPath();
+
+        } catch (Exception e) {
+            // Menampilkan pesan error jika gagal mengupload file
+            JOptionPane.showMessageDialog(null, "Gagal upload file: " + e.getMessage());
+        }
+    } else {
+        // Jika tidak ada file yang dipilih, set null
+        foto = null;
+    }
+ 
+    try {
+        // Query SQL untuk menyimpan data siswa ke database
+        String sql = "INSERT INTO siswa(nis,nama_siswa,gender,tempat_lahir,tgl_lahir,alamat,no_hp,id_kelas,foto)"
+                + " VALUES(?,?,?,?,?,?,?,?,?)";
+
+        // Membuka koneksi ke database
+        Connection conn = koneksi.konek();
+
+        // Menyiapkan statement SQL dengan parameter
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        // Mengisi nilai parameter satu per satu
+        statement.setString(1, nis);
+        statement.setString(2, namaSiswa);
+        statement.setString(3, jK);
+        statement.setString(4, tempatLahir);
+        statement.setString(5, tglLahir);
+        statement.setString(6, alamat);
+        statement.setString(7, hp);
+        statement.setString(8, kelas);
+        statement.setString(9, foto);
+
+        // Menjalankan query penyimpanan
+        statement.execute();
+
+        // Menampilkan pesan bahwa data berhasil disimpan
+        JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
+    } catch (SQLException e) {
+        // Menampilkan pesan jika terjadi kesalahan saat menyimpan data
+        JOptionPane.showMessageDialog(null, "Data gagal disimpan!");
+    }
+
+    // Memuat ulang data siswa ke tabel
+    load_tabel_siswa();
+
+    // Mengosongkan semua input form setelah data disimpan
+    reset();
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        // Mengambil NIS dari field input
+        String nis = tNIS.getText();
+
+        // Mengambil Nama Siswa dari field input
+        String namaSiswa = tNamaSiswa.getText();
+
+        // Mengambil nilai dari combo box jenis kelamin dan mengubah menjadi String
+        String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
+
+        // Variabel untuk menyimpan kode jenis kelamin ('L' atau 'P')
+        String jK = null;
+
+        // Mengambil Tempat Lahir dari field input
+        String tempatLahir = tTempatLahir.getText();
+
+        // Mengambil tanggal lahir dari komponen kalender
+        Date tglLahirDate = tTanggal.getDate();
+
+        // Mengubah tanggal lahir menjadi format "yyyy-MM-dd"
+        String tglLahir = new SimpleDateFormat("yyyy-MM-dd").format(tglLahirDate);
+
+        // Mengambil Nomor HP dari field input
+        String hp = tHP.getText();
+
+        // Mengambil Kelas dari combo box
+        String kelas = cKelas.getSelectedItem().toString();
+
+        // Mengambil Alamat dari field input
+        String alamat = tAlamat.getText();
+
+        // Mengambil path file foto dari field input tersembunyi
+        String filePath = tFotoPath.getText();
+
+        // Mengonversi pilihan jenis kelamin ke kode (L/P)
+        switch (jenisKelamin) {
+            case "Laki - laki":
+                jK = "L";
+                break;
+            case "Perempuan":
+                jK = "P";
+                break;
+            default:
+                jK = null;
+                break;
+        }
+
+        // Variabel untuk menyimpan path foto asli yang tersimpan di database
+        String fotoAsli = null;
+
+        try {
+            // Query untuk mengambil path foto berdasarkan NIS
+            String sql = "SELECT foto FROM siswa WHERE nis = ?";
+            Connection conn = koneksi.konek();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, nis);
+            ResultSet rs = ps.executeQuery();
+
+            // Jika data ditemukan, simpan path foto ke variabel fotoAsli
+            if (rs.next()) {
+                fotoAsli = rs.getString("foto");
+            }
+        } catch (SQLException e) {
+            // Tampilkan pesan jika gagal mengambil foto dari database
+            JOptionPane.showMessageDialog(null, "Gagal mengambil foto asli: " + e.getMessage());
+        }
+
+        // Menentukan apakah foto diubah oleh pengguna
+        boolean fotoDiubah = (fotoAsli == null && !filePath.isEmpty())
+                || (fotoAsli != null && !fotoAsli.equals(filePath));
+
+        // Jika foto diubah, variabel 'foto' akan diisi dengan path baru
+        String foto = fotoAsli;
+ 
+        if (fotoDiubah) {
+            try {
+                // Ambil file dari path baru
+                File sourceFile = new File(filePath);
+
+                // Dapatkan ekstensi file
+                String extension = filePath.substring(filePath.lastIndexOf('.') + 1);
+
+                // Buat nama file baru berdasarkan waktu agar unik
+                String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+                String destinationPath = "src/foto/foto-" + timestamp + "." + extension;
+
+                // Salin file ke folder tujuan
+                File destFile = new File(destinationPath);
+                Files.copy(sourceFile.toPath(), destFile.toPath());
+
+                // Simpan path tujuan ke variabel 'foto'
+                foto = destinationPath;
+
+            } catch (Exception e) {
+                // Tampilkan pesan jika gagal upload file
+                JOptionPane.showMessageDialog(null, "Gagal upload file: " + e.getMessage());
+            }
+        }
+
+        try {
+            // Query SQL berbeda tergantung apakah foto diubah atau tidak
+            String sql2;
+            if (fotoDiubah) {
+                sql2 = "UPDATE siswa SET nama_siswa=?, gender=?, tempat_lahir=?, "
+                        + "tgl_lahir=?, alamat=?, no_hp=?, id_kelas=?, foto=? WHERE nis=?";
+            } else {
+                sql2 = "UPDATE siswa SET nama_siswa=?, gender=?, tempat_lahir=?, "
+                        + "tgl_lahir=?, alamat=?, no_hp=?, id_kelas=? WHERE nis=?";
+            }
+
+            // Membuka koneksi ke database
+            Connection conn = koneksi.konek();
+
+            // Menyiapkan statement untuk eksekusi SQL
+            PreparedStatement statement = conn.prepareStatement(sql2);
+
+            // Menetapkan parameter umum
+            statement.setString(1, namaSiswa);
+            statement.setString(2, jK);
+            statement.setString(3, tempatLahir);
+            statement.setString(4, tglLahir);
+            statement.setString(5, alamat);
+            statement.setString(6, hp);
+            statement.setString(7, kelas);
+
+            // Jika foto diubah, tetapkan parameter tambahan
+            if (fotoDiubah) {
+                statement.setString(8, foto);
+                statement.setString(9, nis);
+            } else {
+                statement.setString(8, nis);
+            }
+
+            // Eksekusi perintah update
+            statement.execute();
+
+            // Tampilkan pesan sukses
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+
+        } catch (SQLException e) {
+            // Tampilkan pesan jika update gagal
+            JOptionPane.showMessageDialog(null, "Gagal memperbarui data: " + e.getMessage());
+        }
+
+        // Muat ulang tabel agar perubahan terlihat
+        load_tabel_siswa();
+
+        // Kosongkan form setelah proses selesai
+        reset();
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        String nis = tNIS.getText();
+        
+        String sql = "DELETE FROM siswa WHERE nis=?";
+        
+            try {
+            Connection conn = koneksi.konek();
+            
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setString(1, nis);
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Gagal menghapus data"+e.getMessage());
+        }
+            load_tabel_siswa();
+            
+            reset();
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
