@@ -265,7 +265,7 @@ public class panelSiswa extends javax.swing.JPanel {
         lblJenisKelamin.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblJenisKelamin.setText("Jenis Kelamin");
 
-        cJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan", "  " }));
         cJenisKelamin.setPreferredSize(new java.awt.Dimension(200, 34));
 
         lblTempatLahir.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
@@ -298,7 +298,6 @@ public class panelSiswa extends javax.swing.JPanel {
         tTanggal.setMinimumSize(new java.awt.Dimension(200, 34));
         tTanggal.setPreferredSize(new java.awt.Dimension(200, 34));
 
-        cKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cKelas.setPreferredSize(new java.awt.Dimension(200, 34));
 
         javax.swing.GroupLayout pInputanLayout = new javax.swing.GroupLayout(pInputan);
@@ -620,7 +619,7 @@ public class panelSiswa extends javax.swing.JPanel {
 
     // Konversi jenis kelamin dari teks menjadi kode (L atau P)
             switch (jenisKelamin) {
-            case "Laki - laki":
+            case "Laki-laki":
             jK = "L";
             break;
             case "Perempuan":
@@ -751,7 +750,7 @@ public class panelSiswa extends javax.swing.JPanel {
 
         // Mengonversi pilihan jenis kelamin ke kode (L/P)
         switch (jenisKelamin) {
-            case "Laki - laki":
+            case "Laki-laki":
                 jK = "L";
                 break;
             case "Perempuan":
