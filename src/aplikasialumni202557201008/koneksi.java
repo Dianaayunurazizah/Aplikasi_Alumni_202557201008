@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package aplikasialumni202557201008;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.Connection; //untuk menghubungkan antar java dengan mysql
+import java.sql.DriverManager; //untuk mencari driver yang sesuai dan membuka koneksi java ke database, isinya adalah method public static connection konek()
+import java.sql.SQLException; //untuk menangkap error yang terjadi saat java berinteraksi dengan mysql
 
 /**
  *
@@ -14,12 +14,14 @@ import java.sql.SQLException;
 
 
 public class koneksi {
-   
+//mendeklarasikan variabel koneksi sebagai static agar bisa diakses dari mana saja di class  
 private static Connection mysqlconfiq;
-
+//method static untuk membuka koneksi di database MySQL
 public static Connection konek(){
     
     try {
+        //JDBC (Java Database Connectivity) library bawaan java untuk menghubungkan java ke database
+        //URL / alamat unik / link koneksi ke database biasanya menggunakan jdbc:mysql://[host]:[port]/[nama_database]
         String url = "jdbc:mysql://localhost:3306/alumni_202557201008";
         //username database
         String user = "root";

@@ -29,46 +29,46 @@ public class panelSiswa extends javax.swing.JPanel {
      */
     public panelSiswa() {
         initComponents();
-        reset();
-        load_tabel_siswa();
-        comboKelas();
+        reset(); //memanggil method reset untuk mengosongkan semua input pada form 
+        load_tabel_siswa(); //memanggil method untuk menampilkan data siswa ke dalam tabel
+        comboKelas(); //memanggil method untuk mengisi combo box kelas dari database
     }
-    void reset(){
-        tNIS.setText(null);
-        tNamaSiswa.setText(null);
-        cJenisKelamin.setSelectedItem(null);
-        tTempatLahir.setText(null);
-        tTanggal.setCalendar(null);
-        tHP.setText(null);
-        cKelas.setSelectedItem(null);
-        tAlamat.setText(null);
-        tFotoPath.setText(null);
-        tFoto.setIcon(null);
-        tFoto.setText("Foto"); 
+    void reset(){ //method untuk mengosongkan semua input pada form siswa
+        tNIS.setText(null); //mengosongkan field nis 
+        tNamaSiswa.setText(null);//mengosongkan field NamaSiswa
+        cJenisKelamin.setSelectedItem(null);//mengosongkan pilihan pada combo boox jenis kelamin
+        tTempatLahir.setText(null);//mengosongkan field TempatLahir
+        tTanggal.setCalendar(null);//mengosongkan pilihan pada komponen kalender tanggal lahir
+        tHP.setText(null);//mengosongkan field no hp
+        cKelas.setSelectedItem(null);//mengosongkan pilihan pada combo box kelas
+        tAlamat.setText(null);//mengosongkan field alamat
+        tFotoPath.setText(null);//mengosongkan path file foto yang disimpan
+        tFoto.setIcon(null);//mengahapuss icon pada label foto
+        tFoto.setText("Foto");//mengatur teks label foto menjadi "Foto"
     }
-    void comboKelas(){
+    void comboKelas(){ //method untuk mengisi combo box kelas dari tabel 'Kelas' di database
         try {
-            String sql = "SELECT* FROM kelas";
+            String sql = "SELECT* FROM kelas"; //Query SQL untuk mengambil data kelas
 
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek(); //membuka koneksi ke database
 
-            Statement statement = conn.createStatement();
+            Statement statement = conn.createStatement(); //membuat statement untuk menjalankan query
 
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);///mennjalankan query dan menyimpan hasilnya
 
-            while (resultSet.next()) {
+            while (resultSet.next()) { //mengambil data satu persatu dan menambahkan nya ke combo box
                 cKelas.addItem(resultSet.getString("id_kelas"));
             }
         } catch (SQLException e) {
-            
+            //jika terjadi kesalahan , tampilkan pesan error
         }
         
-        cKelas.setSelectedItem(null);
+        cKelas.setSelectedItem(null); //MENGOSONGKAN PILIHAN COMBO BOX setelah di isi
     }
-    void load_tabel_siswa(){
+    void load_tabel_siswa(){ //method untuk menampilkan data siswa ke dalam tabel 
         
-        DefaultTableModel mdl = new DefaultTableModel();
-        
+        DefaultTableModel mdl = new DefaultTableModel();//membuat mdl tabel baru
+        //menambahkan kolom kedalam mdl tabel
         mdl.addColumn("NIS");
         mdl.addColumn("Nama Siswa");
         mdl.addColumn("L/P");
@@ -77,16 +77,17 @@ public class panelSiswa extends javax.swing.JPanel {
         mdl.addColumn("Kelas");
         mdl.addColumn("HP");
         
-        String sql= "SELECT * FROM siswa";
+        String sql= "SELECT * FROM siswa"; //Perintah / Query SQL untuk mengambil semua data siswa
         
         try {
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database
 
-            Statement st = conn.createStatement();
+            Statement st = conn.createStatement();//membuat statement untuk menjalankan query
 
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);//menjalankan query dan mengambil hasilnya
 
-            while (rs.next()) {
+            while (rs.next()) { //melakukan iterasi untuk setiap baris hasil query
+                //mengambil data dari setiap kolom
                 String nis = rs.getString("nis");
                 String namaSiswa = rs.getString("nama_siswa");
                 String jenisKelamin = rs.getString("gender");
@@ -94,15 +95,16 @@ public class panelSiswa extends javax.swing.JPanel {
                 String tglLahir = rs.getString("tgl_lahir");
                 String kelas = rs.getString("id_kelas");
                 String hp = rs.getString("no_hp");
-
+                //menyimpan data dalam array 
                 Object[] baris = {nis, namaSiswa, jenisKelamin, tempatLahir, tglLahir, kelas, hp};
-
+                //menambahkan data sebagai baris baru di mdl tabel
                 mdl.addRow(baris);
             }
         } catch (SQLException sQLException) {
+            //menmpilkan pesan error jika terjadi kegagalan saat mengambil data
             JOptionPane.showMessageDialog(null,"Gagal Mengambil Data");
         }
-        tblSiswa.setModel(mdl);
+        tblSiswa.setModel(mdl);//menampilkan model yang sudah di isi ke dalam tabel GUI
     }
 
     /**
@@ -444,58 +446,60 @@ public class panelSiswa extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        reset();
+        reset();//memanggil method reset untuk mengosongkan semua input pada form
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void tblSiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSiswaMouseClicked
         // TODO add your handling code here:
+        //mengambil indeks baris yang di klik pada tabel siswa
         int baris = tblSiswa.rowAtPoint(evt.getPoint());
-        
+        //mengambil nilai dari kolom pertama(NIS) pada baris yang di klik dan mengubah ke string
         String nis = tblSiswa.getValueAt(baris, 0).toString();
-        
+        //mengambilnilai dari kolom kedua (namaSiswa) pada baris yang di klik dan mengubah ke string
         String namaSiswa = tblSiswa.getValueAt(baris, 1).toString();
         
-        Object jkObj = tblSiswa.getValueAt(baris, 2);
+        Object jkObj = tblSiswa.getValueAt(baris, 2);//mengambil object dari kolom ke 3(jenisKelamin disingkat jk)
         
-        Object tempatObj = tblSiswa.getValueAt(baris, 3);
+        Object tempatLahirObj = tblSiswa.getValueAt(baris, 3);//mengambil object dari kolom ke 4(tempatLahir)
         
-        Object tglObj = tblSiswa.getValueAt(baris, 4);
+        Object tglLahirObj = tblSiswa.getValueAt(baris, 4);//mengambil object dari kolom ke 5(tglLahir)
         
-        Object kelasObj = tblSiswa.getValueAt(baris, 5);
+        Object kelasObj = tblSiswa.getValueAt(baris, 5);//mengambil object dari kolom ke 6(kelas)
         
-        Object hpObj = tblSiswa.getValueAt(baris, 6);
+        Object hpObj = tblSiswa.getValueAt(baris, 6);//mengambil object dari kolom ke 7(hp)
         
-        //menampilkan nama siswa ke field input dan membuatnya tidak bisa diubah
+        //menampilkan nilai nis pada field input dan membuatnya tidak bisa diubah
         tNIS.setText(nis);
         tNIS.setEditable(false);
         
-        tNamaSiswa.setText(namaSiswa);
-        
+        tNamaSiswa.setText(namaSiswa);//menampilkan nama siswa ke field input
+        //mengonversi objek menjadi string, jika null maka hasilnya null atau string kosong
         String jenisKelamin=(jkObj != null)?
                 jkObj.toString():null;
-        String tempatLahir=(tempatObj != null)?
-                tempatObj.toString():null;
-        String tglLahir=(tglObj!= null)?
-                tglObj.toString():null;
+        String tempatLahir=(tempatLahirObj != null)?
+                tempatLahirObj.toString():null;
+        String tglLahir=(tglLahirObj!= null)?
+                tglLahirObj.toString():null;
         String idKelas=(kelasObj != null)?
                 kelasObj.toString():null;
         String noHP=(hpObj != null)?
                 hpObj.toString():null;
-        
+        //menampilkan tempat lahir, no hp, dan memilih kelas sesuai data
         tTempatLahir.setText(tempatLahir);
         tHP.setText(noHP);
         cKelas.setSelectedItem(idKelas);
-        
+        //jika tanggal lahir tidak null dan tidak kosong, ubah ke format DATE dan tampilkan di komponen kalender
         if (tglLahir!=null && !tglLahir.isEmpty()){
             try {
                 tTanggal.setDate(java.sql.Date.valueOf(tglLahir));
             } catch (IllegalArgumentException e) {
+                //jika gagal parsing tanggal, kosongkan field tanggal
                 tTanggal.setDate(null);
             }
         }else {
             tTanggal.setDate(null);
         }
-        
+        //Konversi kode jenis kelamin ke bentuk tampilan yang dipahami pengguna
         switch (jenisKelamin){
             case "L":
             cJenisKelamin.setSelectedItem("Laki-Laki");
@@ -511,72 +515,79 @@ public class panelSiswa extends javax.swing.JPanel {
         }
         
         try {
+            //Query untuk mengambil data alamat, dan foto berdasarkan NIS
             String sql = "SELECT alamat, foto FROM siswa WHERE nis =?";
             
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke data base
             
-            PreparedStatement ps = conn.prepareCall(sql);
+            PreparedStatement ps = conn.prepareCall(sql);//menyiapkan statement SQL dengan parameter 
             
-            ps.setString(1, nis);
+            ps.setString(1, nis);//mengisi parameter dengan NIS
             
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();//menjalankan query dan menyimpan hasilnya
             
-            if (rs.next()) {
+            if (rs.next()) { //jika data ditemukan 
+                //mengambil alamat dan foto dari hasil Query
                 String alamat = rs.getString("alamat");
                 String foto = rs.getString("foto");
                 
-                tAlamat.setText(alamat);
-                
+                tAlamat.setText(alamat);//menampilkan alamat ke field input
+                //jika path foto tidak koosong, tampilkan gambar ke label foto
                 if (foto != null && !foto.isEmpty()) {
                     ImageIcon icon = new ImageIcon(foto);
                     Image image = icon.getImage().getScaledInstance(tFoto.getWidth(), tFoto.getHeight(), Image.SCALE_SMOOTH);
-                    
+                    //tampilkan path foto ke label fotopath
                     tFotoPath.setText(foto);
                     tFoto.setText(null);
                     tFoto.setIcon(new ImageIcon(image));
                 } else {
+                    //jika tidak ada foto, menampilkan teks "Foto" dan menghapus icon
                     tFoto.setText("Foto");
                     tFoto.setIcon(null);
                     
                 }
                 
             }
-        } catch (SQLException e) {
+        } catch (SQLException e) { 
+            //menampilkan error ke console jika terjadi kesalahan SQL
             System.err.println(e.getMessage());
         }
     }//GEN-LAST:event_tblSiswaMouseClicked
 
     private void tFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tFotoMouseClicked
         // TODO add your handling code here:
+        //Bloktry digunakan untuk menganggani kemunginan error saat memilih dan memuat file gambar
         try {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser(); //membuat object JFileChooser untuk membuka dialog pemilihan file
             
             int result = chooser.showOpenDialog(null);
-            
+            //mengecek apakah pengguna menekan tombol "OPEN" (OKE)
             if (result == JFileChooser.APPROVE_OPTION) {
-                File file = chooser.getSelectedFile();
+                File file = chooser.getSelectedFile(); //mengambil file yang dipilih oleh pengguna
                 
-                if (file != null) {
-                    ImageIcon icon = new ImageIcon(file.toString());
+                if (file != null) { //mengecek apakah file yang dipilih tidak null 
+                    ImageIcon icon = new ImageIcon(file.toString()); //membuat objek ImageIcon dari file gambar yang dipilih
                     
-                    Image image = icon.getImage().getScaledInstance(
+                    Image image = icon.getImage().getScaledInstance( //mengubah ukuran gambar agar sesuai dengan label tFoto
                             tFoto.getWidth(),
                             tFoto.getHeight(),
                             Image.SCALE_SMOOTH);
                     
-                    ImageIcon ic = new ImageIcon(image);
+                    ImageIcon ic = new ImageIcon(image); //membuat ImageIcon baru dari gambar yang telah diubah ukuran nya
                     
-                    tFoto.setText(null);
+                    tFoto.setText(null); //menghapus text pada label foto
                     
-                    tFoto.setIcon(ic);
+                    tFoto.setIcon(ic); //menampilkan gambar (icon) ke dalam label tFoto
                     
-                    String filename = file.getAbsolutePath();
+                    String filename = file.getAbsolutePath(); //mengambil path absolute dari file gambar dan menyimpan nya ke field tFotoPath
                     tFotoPath.setText(filename);
                 }
             } else {
+                //jika pengguna menekan tombol cancel, tampilkan pesan ke konsole 
                 System.out.println("Pemilihan file dibatalkan oleh pengguna");
             }
         } catch (Exception e) {
+            //menanggani error jika terjadi kesalahan saat memilih atau memuat file gambar
             JOptionPane.showMessageDialog(null,"Error Upload : ");
         }
     }//GEN-LAST:event_tFotoMouseClicked
@@ -867,26 +878,27 @@ public class panelSiswa extends javax.swing.JPanel {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        String nis = tNIS.getText();
+        String nis = tNIS.getText();//mengambil nilai NIS dari field input 
         
-        String sql = "DELETE FROM siswa WHERE nis=?";
+        String sql = "DELETE FROM siswa WHERE nis=?";// Query / Perintah untuk menghapus data siswa berdasarkan nis
         
             try {
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek(); ///membuka koneksi ke database
             
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(sql); //menyiapkan statement SQL untuk di eksekusi
             
-            statement.setString(1, nis);
+            statement.setString(1, nis); //mengisi parameter pertama (tanda ?) dengan nilai nis
             
-            statement.execute();
+            statement.execute();//menjalankan perintah delete
             
-            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");//menampilkan pesan bahwa data berhasil di hapus
         } catch (SQLException e) {
+            //menampilkan pesan jika terjadi kesalahan saat menghapus 
             JOptionPane.showMessageDialog(null,"Gagal menghapus data"+e.getMessage());
         }
-            load_tabel_siswa();
+            load_tabel_siswa();//Muat ulang tabel agar perubahan terlihat
             
-            reset();
+            reset();// Kosongkan form inputan setelah proses selesai
     }//GEN-LAST:event_btnHapusActionPerformed
 
 

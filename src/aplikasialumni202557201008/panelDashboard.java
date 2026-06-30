@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasialumni202557201008;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Connection; // untuk menghubungkan antar java dengan mysql
+import java.sql.ResultSet; //menampung hasil query SELECT dari database
+import java.sql.SQLException; //untuk menangkap error yang terjadi saat java berinteraksi dengan mysql
+import java.sql.Statement; //
 /**
  *
  * @author Acer
@@ -16,47 +16,53 @@ public class panelDashboard extends javax.swing.JPanel {
     /**
      * Creates new form panelDashboard
      */
-    public panelDashboard() {
+    public panelDashboard() { //tempat konstruktor 
         initComponents();
-        isiJumlahDataDasbor();
+        isiJumlahDataDasbor(); //memanggil method isiJumlahDataDasbor
     }
     private void isiJumlahDataDasbor(){
+        //untuk membuka koneksi ke database
         Connection conn = koneksi.konek();
         
         try {
+            //mengambil jumlah jurusan dari tabel jurusan
             String sqlJurusan = "SELECT COUNT(*) AS jumlah FROM jurusan";
             Statement psJurusan = conn.createStatement();
             ResultSet rsJurusan = psJurusan.executeQuery(sqlJurusan);
-            
+            //jika hasil perintah / query ada, ambil dan tampilkan ke label jumlah jurusan(tJumlahJurusan)
             if (rsJurusan.next()) {
                 int jumlah = rsJurusan.getInt("jumlah");
                 tJumlahJurusan.setText(String.valueOf(jumlah));
             }
+            //mengambil jumlah guru dari tabel guru
             String sqlGuru = "SELECT COUNT(*) AS jumlah FROM guru";
             Statement psGuru = conn.createStatement();
             ResultSet rsGuru = psGuru.executeQuery(sqlGuru);
-            
+            //jjika hasil perintah / query ada , ambil dan tampilkan ke label jumlah guru(tJumlahGuru)
             if (rsGuru.next()) {
                 int jumlah = rsGuru.getInt("jumlah");
                 tJumlahGuru.setText(String.valueOf(jumlah));
             }
+            //mengambil jumlah siswa dari tabel siswa
             String sqlSiswa = "SELECT COUNT(*) AS jumlah FROM siswa";
             Statement psSiswa = conn.createStatement();
             ResultSet rsSiswa = psSiswa.executeQuery(sqlSiswa);
-            
+            //jika hasil perintah / query ada, ambil dan tampilkan ke label jumlah siswa(tJumlahSiswa)
             if (rsSiswa.next()) {
                 int jumlah = rsSiswa.getInt("jumlah");
                 tJumlahSiswa.setText(String.valueOf(jumlah));
             }
+            //mengambil jumlah kelas dari tabel kelas
             String sqlKelas = "SELECT COUNT(*) AS jumlah FROM kelas";
             Statement psKelas = conn.createStatement();
             ResultSet rsKelas = psKelas.executeQuery(sqlKelas);
-            
+            //jika hasil perintah / query ada, ambil dan tampilkan ke label jumlah kelas (tJumlahKelas)
             if (rsKelas.next()) {
                 int jumlah = rsKelas.getInt("jumlah");
                 tJumlahKelas.setText(String.valueOf(jumlah));
             }
         } catch (SQLException e) {
+            //Menampilkan pesan di console, jika terjadi error saat emnagmbil data
             System.err.println("Gagal mengambil jumlah data");
         }
     }

@@ -4,16 +4,15 @@
  */
 package aplikasialumni202557201008;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import com.mysql.cj.jdbc.PreparedStatementWrapper;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+import com.formdev.flatlaf.FlatLightLaf; //mengatur tema flat terang
+import com.mysql.cj.jdbc.PreparedStatementWrapper; //LIBARY BAAWAN JAVA untuk menghubungkan java ke database
+import javax.swing.UIManager; // untuk mengatur tampilan UI aplikasi
 import javax.swing.UnsupportedLookAndFeelException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
+import java.sql.Connection; // untuk menghubungkan antar java dengan mysql
+import java.sql.PreparedStatement; // untuk menjalankan query/perintah SQL 
+import java.sql.SQLException; //untuk menangkap error yang terjadi saat java berinteraksi dengan mysql
+import java.sql.ResultSet;//menampung hasil query SELECT dari database
+import javax.swing.JOptionPane; //untuk menampilkan pop up
 
 /**
  *
@@ -26,7 +25,7 @@ public class fLogin extends javax.swing.JFrame {
     /**
      * Creates new form fLogin
      */
-    public fLogin() {
+    public fLogin() { //tempat konstruktor
         initComponents();
     }
 
@@ -141,16 +140,17 @@ public class fLogin extends javax.swing.JFrame {
 
     private void lblcloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcloseMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        System.exit(0); // icon (X) BERFUNGSI untuk keluar dari frame login
     }//GEN-LAST:event_lblcloseMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here
-      
+      //saat tombol login di klik maka akan terjadi proses ini:
+        //mengambil teks yang dimasukkan user pada field Username
             String username = tUserName.getText();
-            
+            //mengambil teks yang dimasukkan user pada field Password
             String password = tPassword.getText();
-            //Jika username dan password tidak kosong
+            //Periksa apakah username dan password tidak kosong?
             if (username.length() != 0 && password.length()!= 0)  {
         
                 try {
@@ -177,12 +177,12 @@ public class fLogin extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Username/password salah");
                     }                    
                 } catch (SQLException sQLException) {
-                    
+                    //jika terjadi kesalahan SQL, tampilkan pesan error
                     JOptionPane.showMessageDialog(null, sQLException.getMessage());
                 }
                
             }else {
-                
+                // Jika username atau password kosong , berikan peringatan ke user
                 JOptionPane.showMessageDialog(null, "Username/password tidak boleh kosong");
    
         }

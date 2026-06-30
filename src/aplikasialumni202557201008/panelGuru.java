@@ -20,49 +20,51 @@ public class panelGuru extends javax.swing.JPanel {
      * Creates new form panelDashboard
      */
     public panelGuru() {
-        initComponents();
-        reset();
-        load_tabel_guru();
+        initComponents(); 
+        reset();//mengosongkan form input dan mengatur ulang komponen input
+        load_tabel_guru();//memaut data dari database ke dalam tabel guru pada GUI
     }
-    void reset(){
-        tNIP.setText(null);
-        tNIP.setEditable(true);
-        tNamaGuru.setText(null);
-        cJenisKelamin.setSelectedItem(null);
-        tAlamat.setText(null);
+    void reset(){ //method untuk mereset atau mengosongkan form input
+        tNIP.setText(null); //kosaongkan field NIP
+        tNIP.setEditable(true); //aktifkan kembali agar NIP bisa di edit
+        tNamaGuru.setText(null); //kosongkan field nama guru
+        cJenisKelamin.setSelectedItem(null); //reset pilihan jenis kelamin (combo box)
+        tAlamat.setText(null); //kosongkan field alamat
     }
-    void load_tabel_guru(){
-        DefaultTableModel mdl =new DefaultTableModel();
-        
-        mdl.addColumn("NIP");
+    void load_tabel_guru(){//method untuk memuat data dari tabel 'guru' ke dalam tabel GUI (tblGuru)
+        DefaultTableModel mdl =new DefaultTableModel();//Membuat obejk mdl tabel baru 
+        //menambahakan nama kolom ke dalam mdl tabel
+        mdl.addColumn("NIP"); 
         mdl.addColumn("Nama Guru");
         mdl.addColumn("L/P");
         mdl.addColumn("Alamat");
         
-        String sql = "SELECT * FROM guru";
+        String sql = "SELECT * FROM guru"; //QUERY SQL untuk mengambil semua data dari tabel guru
         
         try {
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database
 
-            Statement st = conn.createStatement();
+            Statement st = conn.createStatement();//membuat statement sql
 
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);//menjalankan query dan menyimpan hasilnya
 
-            while (rs.next()) {
+            while (rs.next()) {//iterasi untuk setiap baris hasil query
+                //mengambil nilai dari masing - masing kolom 
                 String NIP = rs.getString("nip");
                 String namaGuru = rs.getString("nama_guru");
                 String jenisKelamin = rs.getString("gender");
                 String alamat = rs.getString("alamat");
 
-                Object[] baris = {NIP, namaGuru, jenisKelamin, alamat};
+                Object[] baris = {NIP, namaGuru, jenisKelamin, alamat};//menyusun daata ke dalam array objek
 
-                mdl.addRow(baris);
+                mdl.addRow(baris); //menambahkan data ke mdl tabel
             }
         } catch (SQLException sQLException) {
+            //menampilkan pesan error jjika terjadi kegagalan megambil data dari database
             JOptionPane.showMessageDialog(null,"Gagal mengambil data");
         }
         
-        tblGuru.setModel(mdl);
+        tblGuru.setModel(mdl);//menampilkan data mdl ke dalam tabel GUI
     }
 
     /**
@@ -286,16 +288,17 @@ public class panelGuru extends javax.swing.JPanel {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
+        //mengambil input NIP dari text field tNIP
         String NIP = tNIP.getText();
-        
+        //mengambil input nama guru dari text field tNamaGuru
         String namaGuru = tNamaGuru.getText();
-        
+        //mengambil item yang dipilih dari combo box jenis kelamin
         String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
-        
+        //mengambil input alamat dari text field tAlamat
         String alamat = tAlamat.getText();
         
-        String jK = null;
-        
+        String jK = null; //menyiapkan variabel jk (jenis kelamin dalam format singkatan "L" atau "P")
+        //Mengubah nilai jenis kelamin dari label menjadi format singkatan yang disimpan di database
         switch (jenisKelamin){
             case "Laki-Laki":
                 jK="L";
@@ -307,45 +310,48 @@ public class panelGuru extends javax.swing.JPanel {
                 jK =null;
                 break;
         }
-        
+        //menyusun perintah / query SQL untuk memasukkan data guru ke dalam tabel guru
         String sql ="INSERT INTO guru(nip, nama_guru, gender, alamat) VALUES(?,?,?,?)";
         
         try {
+            //membuka koneksi ke database menggunakan method konek()
             Connection conn = koneksi.konek();
-            
+            //mempersiapkan query SQL dengan parameter (preparedStatment)
             PreparedStatement ps = conn.prepareStatement(sql);
             
-            ps.setString(1, NIP);
+            ps.setString(1, NIP);//mengisi parameter pertama dengan NIP
             
-            ps.setString(2, namaGuru);
+            ps.setString(2, namaGuru);//mengisi parameter kedua dengan Nama Guru
             
-            ps.setString(3, jK);
+            ps.setString(3, jK);//mengisi parameter ketigaa dengan Jenis Kelamin("L" atau "P")
             
-            ps.setString(4, alamat);
+            ps.setString(4, alamat);//mengisi parameter ke empat dengan alamat
             
-            ps.execute();
+            ps.execute();//menjalankan perintah insert untuk menyimpan data ke database
             
-            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");//untuk menampilkan pesan bahwa data berhasil di simpan
         } catch (SQLException sQLException) {
+            //menampilkan pesan jika terjadi kesalahan saat menyimpan data
             JOptionPane.showMessageDialog(null,"Data gagal disimpan");
         } 
-        load_tabel_guru();
+        load_tabel_guru();//memuat ulang data guru di tabel tampilan
         
-        reset();
+        reset(); //mereset semua input agar kosong kembali
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
+        //mengambil input NIP dari text field tNIP
         String NIP = tNIP.getText();
-        
+        //mengambil input nama guru dari text field tNamaGuru
         String namaGuru = tNamaGuru.getText();
-        
+        //mengambil item yang dipilih dari combo box jenis kelamin
         String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
-        
+        //mengambil input alamat dari text field tAlamat
         String alamat = tAlamat.getText();
         
-        String jK = null;
-        
+        String jK = null;//menyiapkan variabel jk (jenis kelamin dalam format singkatan "L" atau "P")
+        //Mengubah nilai jenis kelamin dari label menjadi format singkatan yang disimpan di database
         switch (jenisKelamin){
             case "Laki-Laki":
                 jK="L";
@@ -357,92 +363,98 @@ public class panelGuru extends javax.swing.JPanel {
                 jK =null;
                 break;
         }
-        
+        //menyusun perintah / query SQL untuk mengubah data guru berdasarkan nip
         String sql ="UPDATE guru SET nama_guru=?, gender=?, alamt=? WHERE nip=?";
         
         try {
+            //membuka koneksi ke database menggunakan method konek()
             Connection conn = koneksi.konek();
-            
+            //mempersiapkan query SQL dengan parameter (preparedStatment)
             PreparedStatement ps = conn.prepareStatement(sql);
             
-            ps.setString(1, namaGuru);
+            ps.setString(1, namaGuru);//mengisi parameter pertama dengan namaGuru
             
-            ps.setString(2, jK);
+            ps.setString(2, jK);//mengisi parameter kedua dengan Jenis Kelamin("L" atau "P")
             
-            ps.setString(3, alamat);
+            ps.setString(3, alamat);//mengisi parameter ketiga dengan alamat
             
-            ps.setString(4, NIP);
+            ps.setString(4, NIP);//mengisi parameter ke empat dengan NIP
             
-            ps.execute();
+            ps.execute();//menjalankan perintah update untuk menyimpan data ke database
             
-            JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah");//untuk menampilkan pesan bahwa data berhasil di ubah
         } catch (SQLException sQLException) {
+            //menampilkan pesan jika terjadi kesalahan saat mengubah data
             JOptionPane.showMessageDialog(null,"Data gagal diubah");
         } 
-        load_tabel_guru();
+        load_tabel_guru();//memuat ulang data guru di tabel tampilan
         
-        reset();
+        reset();//mereset semua input agar kosong kembali
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
+        //mengambil input NIP dari text field tNIP
         String NIP = tNIP.getText();
-       
+       //menyusun perintah / query SQL untuk mengahapus data guru berdasarkan nip
         String sql ="DELETE FROM guru WHERE nip=?";
         
         try {
+            //membuka koneksi ke database menggunakan method konek()
             Connection conn = koneksi.konek();
-            
+            //mempersiapkan query SQL dengan parameter (preparedStatment)
             PreparedStatement ps = conn.prepareStatement(sql);
             
-            ps.setString(1, NIP);
+            ps.setString(1, NIP);//mengisi parameter ke satu dengan NIP
             
-            ps.execute();
+            ps.execute();//menjalankan perintah ddelete untuk menyimpan data ke database
             
-            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");//untuk menampilkan pesan bahwa data berhasil di hapus
         } catch (SQLException sQLException) {
+            //menampilkan pesan jika terjadi kesalahan saat menghapus data
             JOptionPane.showMessageDialog(null,"Data gagal dihapus");
         } 
-        load_tabel_guru();
+        load_tabel_guru();//memuat ulang data guru di tabel tampilan
         
-        reset();
+        reset();//mereset semua input agar kosong kembali
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        reset();
+        reset();//mengosongkan form input dan mengatur ulang komponen input
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void tblGuruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGuruMouseClicked
         // TODO add your handling code here:
+        //mengambil indeks baris yang di kllik oleh user di tabel tblGuru
         int barisYangDipilih = tblGuru.rowAtPoint(evt.getPoint());
-        
+        //mengambil nilai NIP dari kolom pertama (indeks 0) pada baris yang dipilih
         String NIP = tblGuru.getValueAt(barisYangDipilih, 0).toString();
-        
+        //mengambil nilai nama guru dari kolom kedua (indeks 1) pada baris yang dipilih
         String namaGuru = tblGuru.getValueAt(barisYangDipilih, 1).toString();
-        
+        //mengambil nilai jenis kelamin dari kolom ketiga (indeks 2) pada baris yang dipilih
         String jenisKelamin = tblGuru.getValueAt(barisYangDipilih, 2).toString();
-        
+        //mengambil nilai alamat dari kolom keempat (indeks 3) pada baris yang dipilih
         String alamat = tblGuru.getValueAt(barisYangDipilih, 3).toString();
         
-        tNIP.setText(NIP);
+        tNIP.setText(NIP);// menampilkan nilai NIP ke dalam text field tNIP
         
-        tNIP.setEditable(false);
+        tNIP.setEditable(false); //menonaktifkan field tNIP agar tidak bisa di edit(karena NIP berisifat unik dan tdk boleh di ubah)
         
-        tNamaGuru.setText(namaGuru);
+        tNamaGuru.setText(namaGuru);// menampilkan nilai nama guru ke dalam text field tNamaGuru
         
-        tAlamat.setText(alamat);
-        
+        tAlamat.setText(alamat);// menampilkan nilai alamat ke dalam text field tAlamat
+        //mengecheck isi nilai jenis kelamin dan menyesuaikan pilihan pada combo box cJenisKelamin
         switch(jenisKelamin){
-        
+                //jika nilai jenis kelamin 'L' set pilihan combo box ke "Laki-Laki"
                 case "L":
                 cJenisKelamin.setSelectedItem("Laki-Laki");
                 break;
-                
+                //jika nilai jenis kelamin 'P' set pilihan combo box ke "Perempuan"
                 case "P":
                 cJenisKelamin.setSelectedItem("Perempuan");
                 break;
-                
+                //jika nilainya bukan "L" atau "P" kosongkan pilihan combo box
                 default :
                 cJenisKelamin.setSelectedItem(null);
                 break;

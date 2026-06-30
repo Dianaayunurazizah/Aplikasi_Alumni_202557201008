@@ -19,140 +19,141 @@ public class panelKelas extends javax.swing.JPanel {
     /**
      * Creates new form panelDashboard
      */
-    public panelKelas() {
+    public panelKelas() { //tempat konstruktor
         initComponents();
-        reset();
-        load_tabel_kelas();
-        comboJurusan();
-        comboWali();
+        reset(); //mengosongkan semua input form
+        load_tabel_kelas(); //menampilkan data kelas ke dalam tblKelas
+        comboJurusan();//mengisi combo box jurusan dari database
+        comboWali();//mengisi combo box wali kelas dari database
     }
-    void reset(){
-        tKodeKelas.setText(null);
-        tKodeKelas.setEditable(true);
-        tNamaKelas.setText(null);
-        cTingkatan.setSelectedItem(null);
-        cJurusan.setSelectedItem(null);
-        cWali.setSelectedItem(null);
+    void reset(){//method untuk mengosongkan semua form yang diinputkan
+        tKodeKelas.setText(null);//kosongkan field kode kelas
+        tKodeKelas.setEditable(true); //aktifkan kembali input kode kelas agar bisa diubah
+        tNamaKelas.setText(null);//kosongkan field nama kelas
+        cTingkatan.setSelectedItem(null);//kosongkan pilihan pada combo box tingkatan 
+        cJurusan.setSelectedItem(null);//kosongkan pilihan pada combo box Jurusan
+        cWali.setSelectedItem(null);//kosongkan pilihan pada combo box Wali Kelas
     }
-    void load_tabel_kelas(){
-        
+    void load_tabel_kelas(){//method untuk menampilkan semua data kelas ke dalam tabel
+        //buat mdl tabel baru untuk menyimpan data yanng akan ditampilkan
         DefaultTableModel mdl = new DefaultTableModel();
-        
+        //tambahkan nama - nama kkolom ke mdl tabel
         mdl.addColumn("Kode Kelas");
         mdl.addColumn("Nama Kelas");
         mdl.addColumn("Tingkatan");
         mdl.addColumn("Jurusan");
         mdl.addColumn("Wali Kelas");
-        
+        //Buat Query SQL untuk mengambil data kelas beserta jurusan dan wali kelas
         String sql = "SELECT k.id_kelas,k.nama_kelas,k.tingkatan,j.nama_jur,g.nama_guru "
                 +"FROM kelas k "
                 +"LEFT JOIN jurusan j ON k.kode_jur=j.kode_jur "
                 +"LEFT JOIN guru g ON k.nip_wali_kelas=g.nip";
         
         try {
+            ////membuka koneksi ke database menggunakan method konek()
             Connection conn = koneksi.konek();
-
+            //siapkan perintah SQL 
             Statement st = conn.createStatement();
-
+            //jalankan Query dan ambil hasilnya 
             ResultSet rs = st.executeQuery(sql);
-
-            while (rs.next()) {
+         
+            while (rs.next()) { //baca setiap baris data dari hasil Query
+                //AMBIL data dari setiap kolom
                 String kodeKelas = rs.getString("id_kelas");
                 String namaKelas = rs.getString("nama_kelas");
                 String tingkatan = rs.getString("tingkatan");
                 String jurusan = rs.getString("nama_jur");
                 String waliKelas = rs.getString("nama_guru");
-
+                //masukkan data ke dalam satu baris array
                 Object[] baris = {kodeKelas, namaKelas, tingkatan, jurusan, waliKelas};
-
+                //tambahkan baris data ke mdl tabel
                 mdl.addRow(baris);
             }
         } catch (SQLException sQLException) {
+            //tampilkan pesan  jika terjadi kesalahan saat mengambil data
             JOptionPane.showMessageDialog(null,"Gagal mengambil data!");
         }
-        tblKelas.setModel(mdl);
+        tblKelas.setModel(mdl);//tampilkan data yang sudah dimasukkan kem dalam tabel di GUI
     }
-    void comboJurusan(){
+    void comboJurusan(){//method untuk mengisi combo box jurusan dari database
         try {
-        String sql = "SELECT * FROM jurusan";
+        String sql = "SELECT * FROM jurusan";//Perintah / Query untuk mengambil semua data dari tabel jurusan
 
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();////membuka koneksi ke database menggunakan method konek()
 
-            Statement statement = conn.createStatement();
+            Statement statement = conn.createStatement();//siapkan perintah SQL
 
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);//jalankan Query dan ambil hasilnya 
 
-            while (resultSet.next()) {
+            while (resultSet.next()) { //tambahkan setiap nama jurusan ke dalam combo box
                 cJurusan.addItem(resultSet.getString("nama_jur"));
             }
         } catch (SQLException sQLException) {
-            
+            //kosongkan (tidak ada penangganan kesalahan)
         }
-        cJurusan.setSelectedItem(null);
+        cJurusan.setSelectedItem(null);//kosongkan pilihan default combo box
     }
-    void comboWali(){
+    void comboWali(){//method untuk mengisi combo box wali kelas dari database
         try{
-        String sql = "SELECT * FROM guru";
+        String sql = "SELECT * FROM guru";//Perintah / Query untuk mengambil semua data dari tabel guru
 
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();////membuka koneksi ke database menggunakan method konek()
 
-            Statement statement = conn.createStatement();
+            Statement statement = conn.createStatement();//siapkan perintah SQL
 
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);//jalankan Query dan ambil hasilnya 
 
-            while (resultSet.next()) {
+            while (resultSet.next()) { //tambahkan setiap nama guru ke dalam combo box
                 cWali.addItem(resultSet.getString("nama_guru"));
             }
         } catch (SQLException sQLException) {
-            
+         //kosongkan (tidak ada penangganan kesalahan   
         }
         cWali.setSelectedItem(null);
     }
-    String KodeJurusan(String NamaJurusan) {
+    String KodeJurusan(String NamaJurusan) { ///method untuk mengambil kode jurusan berdasarkan nama jurusan
         try{
-        String sql = "SELECT * FROM jurusan WHERE nama_jur=?";
+        String sql = "SELECT * FROM jurusan WHERE nama_jur=?";//Query dengan parameter untuk mencari jurusan berdasarkan nama
 
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database menggunakan method konek()
 
-            Statement statement = conn.createStatement();
-
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);//siapkan prepared statement
             
-            ps.setString(1,NamaJurusan);
+            ps.setString(1,NamaJurusan);//isi parameter query dengan nama jurusan
             
-            ResultSet resultSet = ps.executeQuery();
+            ResultSet resultSet = ps.executeQuery();//jalankan query dan ambil hasilnya
 
-            while (resultSet.next()) {
+            while (resultSet.next()) { //jika data ditemukan , kembalikan kode jurusann 
                 return resultSet.getString("kode_jur");
             }
         } catch (Exception e) {
+            ///jika error , kembalikan string kosong
             return "";
             
         }
-        return"";
+        return""; //jika tidak ditemukan maka kembalikan string kosong
     }
-    String NIP(String NamaGuru){
+    String NIP(String NamaGuru){ //method untuk mengambil nip berdasarkan nama guru
        try{
-        String sql = "SELECT * FROM guru WHERE nama_guru=?";
+        String sql = "SELECT * FROM guru WHERE nama_guru=?";///Query ddengan parameter untuk mencari guru berdasarkan nama guru
 
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database menggunakan method konek()
 
-            Statement statement = conn.createStatement();
-
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);//siapkan prepared statement
             
-            ps.setString(1,NamaGuru);
+            ps.setString(1,NamaGuru);//isi parameter query dengan nama guru
             
-            ResultSet resultSet = ps.executeQuery();
+            ResultSet resultSet = ps.executeQuery();//jalankan query dan ambil hasilnya
 
-            while (resultSet.next()) {
+            while (resultSet.next()) {//jika data ditemukan , kembalikan nip guru
                 return resultSet.getString("nip");
             }
         } catch (Exception e) {
+            ///jika error , kembalikan string kosong
             return "";
             
         }
-        return"";
+        return"";//jika tidak ditemukan maka kembalikan string kosong
     } 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -382,140 +383,145 @@ public class panelKelas extends javax.swing.JPanel {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
+        //ambil input dari field kode kelas
         String KodeKelas =tKodeKelas.getText();
-        
+        //ambil input dari field Nama kelas
         String NamaKelas =tNamaKelas.getText();
-        
+        //ambil nilai yang dipilih dari combo box tingkatan
         String Tingkatan =cTingkatan.getSelectedItem().toString();
-        
+        //ambil nama jurusan yang dipilih dari combo box lalu ubah ke kodejurusan emnggunakan method kode jurusan()
          String Jurusan =cJurusan.getSelectedItem().toString();
-         
+         //ambil nama wali kelas dari combo box lalu ubah ke NIP menggunakan method NIP
           String WaliKelas =cWali.getSelectedItem().toString();
           
-          try {
+          try { 
             String sql = "INSERT INTO kelas(id_kelas, nama_kelas,tingkatan,kode_jur,nip_wali_kelas)"
-                    + "VALUES (?,?,?,?,?)";
+                    + "VALUES (?,?,?,?,?)";//Query SQL untuk menyimpan data ke tabel kelas
             
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database
             
-            PreparedStatement statement = conn.prepareStatement(sql);
-            
+            PreparedStatement statement = conn.prepareStatement(sql);//siapkan statement SQL dengan parameter 
+            //Masukkan data ke parameter query (urutan sesuai dengan tanda tanya di query)
             statement.setString(1, KodeKelas);
             statement.setString(2, NamaKelas);
             statement.setString(3, Tingkatan);
             statement.setString(4, Jurusan);
             statement.setString(5, WaliKelas);
             
-            statement.execute();
+            statement.execute();//jalankan query untuk menyimpan data ke database
             
-            JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");//tampilkan pesan bahwa data berhasil disimpan
         } catch (SQLException e) {
+            //jika terjadi error saat menyimpan , tampilkan pesan gagal
             JOptionPane.showMessageDialog(null,"Data gagal disimpan!");
         }
           
-       load_tabel_kelas();
+       load_tabel_kelas();//tampilkan kembali data kelas terbaru di tabel
           
-       reset();
+       reset();//kosongkan semua input di form
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
+        //ambil input dari field kode kelas
         String KodeKelas =tKodeKelas.getText();
-        
+        //ambil input dari field Nama Kelas
         String NamaKelas =tNamaKelas.getText();
-        
+        //ambil nilai yang dipilih dari combo box tingkatan
         String Tingkatan =cTingkatan.getSelectedItem().toString();
-        
+        //ambil nama jurusan yang dipilih dari combo box lalu ubah ke kodejurusan emnggunakan method kode jurusan()
          String Jurusan =cJurusan.getSelectedItem().toString();
-         
+         //ambil nama wali kelas dari combo box lalu ubah ke NIP menggunakan method NIP
           String WaliKelas =cWali.getSelectedItem().toString();
           
           try {
             String sql = "UPDATE kelas SET nama_kelas=?, tingkatan=?, kode_jur=?, nip_wali_kelas=?"
-                    + "WHERE id_kelas=?";
+                    + "WHERE id_kelas=?";//Query SQL untuk mengubah data kelas berdasarkan id_kelas
             
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database
             
-            PreparedStatement statement = conn.prepareStatement(sql);
-            
+            PreparedStatement statement = conn.prepareStatement(sql);//siapkan statement SQL dengan parameter 
+            //Masukkan data ke parameter query (urutan sesuai dengan tanda tanya di query)
             statement.setString(1, NamaKelas);
             statement.setString(2, Tingkatan);
             statement.setString(3, Jurusan);
             statement.setString(4, WaliKelas);
             statement.setString(5, KodeKelas);
             
-            statement.execute();
+            statement.execute();//jalankan query untuk melakukan UPDATE data ke database
             
-            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");//tampilkan pesan bahwa data berhasil diubah
         } catch (SQLException e) {
+            //jika terjadi kesalahan saat UPDATE , tampilkan pesan gagal
             JOptionPane.showMessageDialog(null,"Data gagal diubah!");
         }
           
-       load_tabel_kelas();
+       load_tabel_kelas();//tampilkan kembali data kelas terbaru di tabel
           
-       reset();
+       reset();//kosongkan semua input di form
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        String KodeKelas =tKodeKelas.getText();
+        String KodeKelas =tKodeKelas.getText();//ambil nilai kode kelas dari inputan field tKodeKelas
         
           try {
-            String sql = "DELETE FROM kelas WHERE id_kelas=?";
+            String sql = "DELETE FROM kelas WHERE id_kelas=?";//buat perintah SQL untuk menghapus data dari tabel 'Kelas' berdasarkan id_kelas
             
-            Connection conn = koneksi.konek();
+            Connection conn = koneksi.konek();//membuka koneksi ke database
             
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(sql);//siapkan pernyataan SQL untuk mendukung parameter
             
-            statement.setString(1, KodeKelas);
+            statement.setString(1, KodeKelas);//isi nilai parameter pertama (id_kelas) dengan kode kelas yang di iniput
             
-            statement.execute();
+            statement.execute();//jalankan perintah untuk mengambil data dari database
             
-            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");//tampilkan pesan bahwa data berhasil di hapus
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Data gagal dihapus!");
+            JOptionPane.showMessageDialog(null,"Data gagal dihapus!");//tampilkan pesan jika terjadi kesalahan saat menghapus data
         }
           
-       load_tabel_kelas();
+       load_tabel_kelas();//tampilkan kembali data kelas terbaru di tabel
           
-       reset();
+       reset();//kosongkan semua input di form
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        reset();
+        reset();//mengosongkan semua input form
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void tblKelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKelasMouseClicked
         // TODO add your handling code here:
+        //ambil baris yang di klik oleh pengguna  pada tabel kelas 
         int barisYangDipilih = tblKelas.rowAtPoint(evt.getPoint());
-        
+        //ambil nilai dari kolom ke 0 (kode kelas) pada baris yang dipilih 
         String KodeKelas = tblKelas.getValueAt(barisYangDipilih,0).toString();
-        
+        //ambil nilai dari kolom ke 1 (nama kelas) pada baris yang dipilih
         String NamaKelas = tblKelas.getValueAt(barisYangDipilih,1).toString();
-        
+        //ambil nilai dari kolom ke 2 (tingkatan) pada baris yang dipilih
         String Tingkatan = tblKelas.getValueAt(barisYangDipilih,2).toString();
-        
+        //ambil nilai dari kolom ke 3 (jurusan) pada baris yang dipilih
         String Jurusan = tblKelas.getValueAt(barisYangDipilih,3).toString();
         
-        String WaliKelas;
+        String WaliKelas;//buat variabel untuk menyimpan nama wali kelas
         
-        if(tblKelas.getValueAt(barisYangDipilih, 4) !=null){
-            WaliKelas =tblKelas.getValueAt(barisYangDipilih, 4).toString();
+        if(tblKelas.getValueAt(barisYangDipilih, 4) !=null){ //APAKAH KOLOM KE 4 (wali kelas) berisi data atau tidak
+            WaliKelas =tblKelas.getValueAt(barisYangDipilih, 4).toString();//jika ada data , ambil dan ubah menjadi string
   
         }else {
-            WaliKelas=null;
+            WaliKelas=null;//jika kosong (null)set nilai wali kelas juga null
         }
-        tKodeKelas.setText(KodeKelas);
-        tKodeKelas.setEditable(false);
+        tKodeKelas.setText(KodeKelas);//tampilkan kodekelas kedalam input text (tidak bisa di edit)
+        tKodeKelas.setEditable(false);//kode kelas tidak bisa di edit 
         
-        tNamaKelas.setText(NamaKelas);
+        tNamaKelas.setText(NamaKelas);//tampilkan nama kelas ke text field 
         
-        cTingkatan.setSelectedItem(Tingkatan);
+        cTingkatan.setSelectedItem(Tingkatan);//tampilkan tingkatan ke combo box tingkatan
         
-        cJurusan.setSelectedItem(Jurusan);
+        cJurusan.setSelectedItem(Jurusan);//tampilkan jurusan ke combo box jurusan
         
-        cWali.setSelectedItem(WaliKelas);
+        cWali.setSelectedItem(WaliKelas);//tampilkan wali ke combo box wali kelas
     }//GEN-LAST:event_tblKelasMouseClicked
 
 
