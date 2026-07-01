@@ -364,7 +364,7 @@ public class panelGuru extends javax.swing.JPanel {
                 break;
         }
         //menyusun perintah / query SQL untuk mengubah data guru berdasarkan nip
-        String sql ="UPDATE guru SET nama_guru=?, gender=?, alamt=? WHERE nip=?";
+        String sql ="UPDATE guru SET nama_guru=?, gender=?, alamat=? WHERE nip=?";
         
         try {
             //membuka koneksi ke database menggunakan method konek()

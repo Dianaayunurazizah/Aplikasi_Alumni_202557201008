@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasialumni202557201008;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
 import java.nio.file.Files;
@@ -586,7 +587,7 @@ public class panelSiswa extends javax.swing.JPanel {
                 //jika pengguna menekan tombol cancel, tampilkan pesan ke konsole 
                 System.out.println("Pemilihan file dibatalkan oleh pengguna");
             }
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             //menanggani error jika terjadi kesalahan saat memilih atau memuat file gambar
             JOptionPane.showMessageDialog(null,"Error Upload : ");
         }
@@ -595,39 +596,27 @@ public class panelSiswa extends javax.swing.JPanel {
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
         // Mengambil teks dari field NIS
-        
             String nis = tNIS.getText();
- 
     // Mengambil teks dari field Nama Siswa
                 String namaSiswa = tNamaSiswa.getText();
-
     // Mengambil item yang dipilih dari combo box jenis kelamin dan mengubahnya menjadi string
                 String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
-
     // Variabel untuk menyimpan hasil konversi jenis kelamin (L/P)
                 String jK = null;
-
     // Mengambil teks dari field Tempat Lahir
                 String tempatLahir = tTempatLahir.getText();
-
     // Mengambil tanggal dari komponen kalender
                 Date tglLahirDate = tTanggal.getDate();
-
     // Mengubah tanggal lahir menjadi format "yyyy-MM-dd"
                 String tglLahir = new SimpleDateFormat("yyyy-MM-dd").format(tglLahirDate);
-
     // Mengambil teks dari field nomor HP
                 String hp = tHP.getText();
-
     // Mengambil item yang dipilih dari combo box kelas
                 String kelas = cKelas.getSelectedItem().toString();
-
     // Mengambil teks dari field alamat
                 String alamat = tAlamat.getText();
-
     // Mengambil path file dari label path foto
                 String filePath = tFotoPath.getText();
-
     // Konversi jenis kelamin dari teks menjadi kode (L atau P)
             switch (jenisKelamin) {
             case "Laki-laki":
@@ -640,42 +629,32 @@ public class panelSiswa extends javax.swing.JPanel {
             jK = null;
             break;
 }
- 
 // Variabel untuk menyimpan path file foto tujuan
             String foto = null;
- 
 // Mengecek apakah ada path file foto yang dipilih
         if (filePath.length() != 0) {
             try {
         // Menyimpan path sumber file
                 String sourcePath = filePath;
                 File sourceFile = new File(sourcePath);
-
                 // Menentukan folder tujuan untuk menyimpan foto
                 String destinationFolderPath = "src/foto/";
                 File destinationFolder = new File(destinationFolderPath);
-
                 // Jika folder tujuan belum ada, buat folder tersebut
                 if (!destinationFolder.exists()) {
                     destinationFolder.mkdir();
-                }
- 
+                } 
                 // Mengambil ekstensi file (contoh: jpg, png, dll)
                 String extension = sourcePath.substring(sourcePath.lastIndexOf('.') + 1);
-
                 // Membuat nama file baru yang unik berdasarkan timestamp
                 String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
                 String destinationFileName = "foto-" + timestamp + "." + extension;
-
                 // Membuat file tujuan dengan path dan nama file baru
                 File destinationFile = new File(destinationFolderPath + destinationFileName);
-
                 // Menyalin file dari sumber ke tujuan
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());
-
                 // Menyimpan path foto yang telah dipindahkan
                 foto = destinationFile.getPath();
-
         } catch (Exception e) {
             // Menampilkan pesan error jika gagal mengupload file
             JOptionPane.showMessageDialog(null, "Gagal upload file: " + e.getMessage());
@@ -684,18 +663,14 @@ public class panelSiswa extends javax.swing.JPanel {
         // Jika tidak ada file yang dipilih, set null
         foto = null;
     }
- 
     try {
         // Query SQL untuk menyimpan data siswa ke database
         String sql = "INSERT INTO siswa(nis,nama_siswa,gender,tempat_lahir,tgl_lahir,alamat,no_hp,id_kelas,foto)"
                 + " VALUES(?,?,?,?,?,?,?,?,?)";
-
         // Membuka koneksi ke database
         Connection conn = koneksi.konek();
-
         // Menyiapkan statement SQL dengan parameter
         PreparedStatement statement = conn.prepareStatement(sql);
-
         // Mengisi nilai parameter satu per satu
         statement.setString(1, nis);
         statement.setString(2, namaSiswa);
@@ -706,20 +681,16 @@ public class panelSiswa extends javax.swing.JPanel {
         statement.setString(7, hp);
         statement.setString(8, kelas);
         statement.setString(9, foto);
-
         // Menjalankan query penyimpanan
         statement.execute();
-
         // Menampilkan pesan bahwa data berhasil disimpan
         JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
     } catch (SQLException e) {
         // Menampilkan pesan jika terjadi kesalahan saat menyimpan data
         JOptionPane.showMessageDialog(null, "Data gagal disimpan!");
     }
-
     // Memuat ulang data siswa ke tabel
     load_tabel_siswa();
-
     // Mengosongkan semua input form setelah data disimpan
     reset();
     }//GEN-LAST:event_btnTambahActionPerformed

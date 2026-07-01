@@ -224,7 +224,7 @@ public class panelKelas extends javax.swing.JPanel {
         lblTingkatan.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblTingkatan.setText("Tingkatan");
 
-        cTingkatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cTingkatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "10", "11", "12", " " }));
 
         lblJurusan.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblJurusan.setText("Jurusan");
@@ -390,13 +390,13 @@ public class panelKelas extends javax.swing.JPanel {
         //ambil nilai yang dipilih dari combo box tingkatan
         String Tingkatan =cTingkatan.getSelectedItem().toString();
         //ambil nama jurusan yang dipilih dari combo box lalu ubah ke kodejurusan emnggunakan method kode jurusan()
-         String Jurusan =cJurusan.getSelectedItem().toString();
+        String Jurusan =KodeJurusan(cJurusan.getSelectedItem().toString());
          //ambil nama wali kelas dari combo box lalu ubah ke NIP menggunakan method NIP
-          String WaliKelas =cWali.getSelectedItem().toString();
+        String WaliKelas =NIP(cWali.getSelectedItem().toString());
           
           try { 
-            String sql = "INSERT INTO kelas(id_kelas, nama_kelas,tingkatan,kode_jur,nip_wali_kelas)"
-                    + "VALUES (?,?,?,?,?)";//Query SQL untuk menyimpan data ke tabel kelas
+              //Query SQL untuk menyimpan data ke tabel kelas
+            String sql = "INSERT INTO kelas(id_kelas, nama_kelas,tingkatan,kode_jur,nip_wali_kelas)VALUES(?,?,?,?,?)";
             
             Connection conn = koneksi.konek();//membuka koneksi ke database
             
@@ -430,13 +430,13 @@ public class panelKelas extends javax.swing.JPanel {
         //ambil nilai yang dipilih dari combo box tingkatan
         String Tingkatan =cTingkatan.getSelectedItem().toString();
         //ambil nama jurusan yang dipilih dari combo box lalu ubah ke kodejurusan emnggunakan method kode jurusan()
-         String Jurusan =cJurusan.getSelectedItem().toString();
+         String Jurusan =KodeJurusan(cJurusan.getSelectedItem().toString());
          //ambil nama wali kelas dari combo box lalu ubah ke NIP menggunakan method NIP
-          String WaliKelas =cWali.getSelectedItem().toString();
+          String WaliKelas =NIP(cWali.getSelectedItem().toString());
           
           try {
             String sql = "UPDATE kelas SET nama_kelas=?, tingkatan=?, kode_jur=?, nip_wali_kelas=?"
-                    + "WHERE id_kelas=?";//Query SQL untuk mengubah data kelas berdasarkan id_kelas
+                    +"WHERE id_kelas=?";//Query SQL untuk mengubah data kelas berdasarkan id_kelas
             
             Connection conn = koneksi.konek();//membuka koneksi ke database
             
