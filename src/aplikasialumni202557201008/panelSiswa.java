@@ -32,10 +32,11 @@ public class panelSiswa extends javax.swing.JPanel {
         initComponents();
         reset(); //memanggil method reset untuk mengosongkan semua input pada form 
         load_tabel_siswa(); //memanggil method untuk menampilkan data siswa ke dalam tabel
-        comboKelas(); //memanggil method untuk mengisi combo box kelas dari database
+        comboKelas(); //memanggil method untuk mengisi combo box kelas dari databasesss
     }
     void reset(){ //method untuk mengosongkan semua input pada form siswa
         tNIS.setText(null); //mengosongkan field nis 
+        tNIS.setEditable(true);// setelah nis dikosongkan , maka field nis masih bisa di edit atau di isi
         tNamaSiswa.setText(null);//mengosongkan field NamaSiswa
         cJenisKelamin.setSelectedItem(null);//mengosongkan pilihan pada combo boox jenis kelamin
         tTempatLahir.setText(null);//mengosongkan field TempatLahir
@@ -44,8 +45,9 @@ public class panelSiswa extends javax.swing.JPanel {
         cKelas.setSelectedItem(null);//mengosongkan pilihan pada combo box kelas
         tAlamat.setText(null);//mengosongkan field alamat
         tFotoPath.setText(null);//mengosongkan path file foto yang disimpan
-        tFoto.setIcon(null);//mengahapuss icon pada label foto
         tFoto.setText("Foto");//mengatur teks label foto menjadi "Foto"
+        tFoto.setIcon(null);//mengahapuss icon pada label foto
+        
     }
     void comboKelas(){ //method untuk mengisi combo box kelas dari tabel 'Kelas' di database
         try {
@@ -297,7 +299,7 @@ public class panelSiswa extends javax.swing.JPanel {
         tAlamat.setRows(5);
         jScrollPane2.setViewportView(tAlamat);
 
-        tTanggal.setDateFormatString("yyyy-MM-dd\n");
+        tTanggal.setDateFormatString("yyyy-MM-dd");
         tTanggal.setMinimumSize(new java.awt.Dimension(200, 34));
         tTanggal.setPreferredSize(new java.awt.Dimension(200, 34));
 
@@ -478,13 +480,13 @@ public class panelSiswa extends javax.swing.JPanel {
         String jenisKelamin=(jkObj != null)?
                 jkObj.toString():null;
         String tempatLahir=(tempatLahirObj != null)?
-                tempatLahirObj.toString():null;
+                tempatLahirObj.toString():"";
         String tglLahir=(tglLahirObj!= null)?
                 tglLahirObj.toString():null;
         String idKelas=(kelasObj != null)?
                 kelasObj.toString():null;
         String noHP=(hpObj != null)?
-                hpObj.toString():null;
+                hpObj.toString():"";
         //menampilkan tempat lahir, no hp, dan memilih kelas sesuai data
         tTempatLahir.setText(tempatLahir);
         tHP.setText(noHP);
@@ -521,7 +523,7 @@ public class panelSiswa extends javax.swing.JPanel {
             
             Connection conn = koneksi.konek();//membuka koneksi ke data base
             
-            PreparedStatement ps = conn.prepareCall(sql);//menyiapkan statement SQL dengan parameter 
+            PreparedStatement ps = conn.prepareStatement(sql);//menyiapkan statement SQL dengan parameter 
             
             ps.setString(1, nis);//mengisi parameter dengan NIS
             
@@ -596,9 +598,22 @@ public class panelSiswa extends javax.swing.JPanel {
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
         // Mengambil teks dari field NIS
-            String nis = tNIS.getText();
+                String nis = tNIS.getText();
     // Mengambil teks dari field Nama Siswa
                 String namaSiswa = tNamaSiswa.getText();
+                //memberikan waktu program untuk melihat dan memastikan apakah jennis kelamin, tanggal lahir dan kelas sudah di isi dengan benar ???
+                if(cJenisKelamin.getSelectedItem()==null){
+                    JOptionPane.showMessageDialog(null,"Pilih Jenis Kelamin dahulu ");
+                    return;
+                }
+                if(cKelas.getSelectedItem()==null){
+                    JOptionPane.showMessageDialog(null,"Pilih Kelas dahulu ");
+                    return;
+                }
+                if(tTanggal.getDate()==null){
+                    JOptionPane.showMessageDialog(null,"Pilih Tanggal lahir dahulu ");
+                    return;
+                }
     // Mengambil item yang dipilih dari combo box jenis kelamin dan mengubahnya menjadi string
                 String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
     // Variabel untuk menyimpan hasil konversi jenis kelamin (L/P)
@@ -619,7 +634,7 @@ public class panelSiswa extends javax.swing.JPanel {
                 String filePath = tFotoPath.getText();
     // Konversi jenis kelamin dari teks menjadi kode (L atau P)
             switch (jenisKelamin) {
-            case "Laki-laki":
+            case "Laki-Laki":
             jK = "L";
             break;
             case "Perempuan":
@@ -663,7 +678,8 @@ public class panelSiswa extends javax.swing.JPanel {
         // Jika tidak ada file yang dipilih, set null
         foto = null;
     }
-    try {
+        try{
+            
         // Query SQL untuk menyimpan data siswa ke database
         String sql = "INSERT INTO siswa(nis,nama_siswa,gender,tempat_lahir,tgl_lahir,alamat,no_hp,id_kelas,foto)"
                 + " VALUES(?,?,?,?,?,?,?,?,?)";
@@ -702,6 +718,19 @@ public class panelSiswa extends javax.swing.JPanel {
 
         // Mengambil Nama Siswa dari field input
         String namaSiswa = tNamaSiswa.getText();
+        //memberikan waktu program untuk melihat dan memastikan apakah jennis kelamin, tanggal lahir dan kelas sudah di isi dengan benar ???
+        if(cJenisKelamin.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null,"Pilih Jenis Kelamin dahulu ");
+            return;
+            }
+        if(cKelas.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null,"Pilih Kelas dahulu ");
+            return;
+            }
+        if(tTanggal.getDate()==null){
+            JOptionPane.showMessageDialog(null,"Pilih Tanggal lahir dahulu ");
+            return;
+            }
 
         // Mengambil nilai dari combo box jenis kelamin dan mengubah menjadi String
         String jenisKelamin = cJenisKelamin.getSelectedItem().toString();
@@ -732,7 +761,7 @@ public class panelSiswa extends javax.swing.JPanel {
 
         // Mengonversi pilihan jenis kelamin ke kode (L/P)
         switch (jenisKelamin) {
-            case "Laki-laki":
+            case "Laki-Laki":
                 jK = "L";
                 break;
             case "Perempuan":
@@ -763,9 +792,9 @@ public class panelSiswa extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Gagal mengambil foto asli: " + e.getMessage());
         }
 
-        // Menentukan apakah foto diubah oleh pengguna
-        boolean fotoDiubah = (fotoAsli == null && !filePath.isEmpty())
-                || (fotoAsli != null && !fotoAsli.equals(filePath));
+        // Menentukan apakah foto diubah oleh pengguna ,
+        boolean fotoDiubah = (filePath != null && !filePath.isEmpty())// fotoDiubah akan bernilai true saat di user menambahkan foto baru
+                && (fotoAsli == null || !fotoAsli.equals(filePath)); //dan foto lama belum ada atau kosng atau fot lama beda dengan foto yang baru ditambahkan
 
         // Jika foto diubah, variabel 'foto' akan diisi dengan path baru
         String foto = fotoAsli;

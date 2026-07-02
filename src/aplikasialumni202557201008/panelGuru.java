@@ -136,7 +136,7 @@ public class panelGuru extends javax.swing.JPanel {
         lblNama.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblNama.setText("Nama");
 
-        cJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan", " " }));
+        cJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan", "" }));
 
         lblJenisKelamin.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblJenisKelamin.setText("Jenis Kelamin");

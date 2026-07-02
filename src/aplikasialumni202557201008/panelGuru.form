@@ -193,7 +193,7 @@
                   <StringArray count="3">
                     <StringItem index="0" value="Laki-Laki"/>
                     <StringItem index="1" value="Perempuan"/>
-                    <StringItem index="2" value=" "/>
+                    <StringItem index="2" value=""/>
                   </StringArray>
                 </Property>
               </Properties>

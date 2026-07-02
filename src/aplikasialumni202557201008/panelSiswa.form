@@ -506,7 +506,7 @@
                 </Container>
                 <Component class="com.toedter.calendar.JDateChooser" name="tTanggal">
                   <Properties>
-                    <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd&#xa;"/>
+                    <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[200, 34]"/>
                     </Property>
