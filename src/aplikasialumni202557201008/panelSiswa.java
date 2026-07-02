@@ -853,7 +853,7 @@ public class panelSiswa extends javax.swing.JPanel {
             // Jika foto diubah, tetapkan parameter tambahan
             if (fotoDiubah) {
                 statement.setString(8, foto);
-                statement.setString(9, nis);
+                 statement.setString(9, nis);
             } else {
                 statement.setString(8, nis);
             }

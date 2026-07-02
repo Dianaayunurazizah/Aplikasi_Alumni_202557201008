@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -224,7 +224,7 @@ public class panelKelas extends javax.swing.JPanel {
         lblTingkatan.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblTingkatan.setText("Tingkatan");
 
-        cTingkatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "10", "11", "12", " " }));
+        cTingkatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "10", "11", "12" }));
 
         lblJurusan.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 0, 12)); // NOI18N
         lblJurusan.setText("Jurusan");
